@@ -1,7 +1,7 @@
 <div class=" w-full bg-nav z-20 pt-8">
     <div class=" max-w-7xl mx-auto items-center justify-between w-full">
         <div class=" absolute">
-            <img src="assets/Kpa-nav.png" alt="logo" class="w-52 sm:block hidden">
+            <img src="{{ asset('assets/kpa-nav.png') }}" alt="logo" class="w-52 sm:block hidden">
         </div>
         <a class="flex items-center justify-center sm:text-4xl text-base font-semibold  text-white">Lokasi Prioritas Reforma Agraria</a>
         <div></div>
