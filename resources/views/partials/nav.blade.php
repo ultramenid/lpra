@@ -17,8 +17,8 @@
             <div class="px-4 py-2  @if($nav == 'profile') border-b-4 border-white  rounded @endif">
                 <a href="{{ route('profile') }}" class="text-white font-semibold sm:text-base text-xs">profile</a>
             </div>
-            <div class="px-4 py-2  @if($nav == 'update') border-b-4 border-white  rounded @endif">
-                <a href="#" class="text-white font-semibold sm:text-base text-xs">update</a>
+            <div class="px-4 py-2  @if($nav == 'updates') border-b-4 border-white  rounded @endif">
+                <a href="{{ route('updates') }}" class="text-white font-semibold sm:text-base text-xs">updates</a>
             </div>
         </div>
     </div>

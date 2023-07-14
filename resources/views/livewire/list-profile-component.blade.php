@@ -5,7 +5,7 @@
     <div class="mt-4">
         <div class="flex justify-between w-full ">
             <div class="text-brown-ndpe w-ful hover:underlinel">
-                <a href="{{$item->slug}}" class="sm:text-2xl text-xl font-notoserif cursor-pointer mb-6">{{$item->profile}}</a>
+                <a href="{{ url('profile', [$item->slug]) }}" class="sm:text-2xl text-xl font-notoserif cursor-pointer mb-6">{{$item->profile}}</a>
                 <div class="flex space-x-2 text-xs text-gray-500 font-light mt-2">
                     <a>Luas: </a>
                     <a>{{$item->luas}}</a>

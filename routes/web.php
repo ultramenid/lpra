@@ -4,6 +4,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UpdatesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/profile', [ProfileController::class, 'list'])->name('profile');
+Route::get('/updates', [UpdatesController::class, 'updates'])->name('updates');
 Route::get('/cms/addprofile', [ProfileController::class, 'addprofile']);
-Route::get('/{slug}', [ProfileController::class, 'detailprofile']);
+Route::get('/profile/{slug}', [ProfileController::class, 'detailprofile']);
+Route::get('/update/{slug}', [UpdatesController::class, 'detailUpdate']);
 Route::get('/cms/addabout', [AboutController::class, 'addabout']);
+Route::get('/cms/addupdates', [UpdatesController::class, 'addupdates']);
 
 
 
