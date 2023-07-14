@@ -5,7 +5,7 @@
     @include('partials.nav')
     <div class="flex">
         <div class="h-screen w-3/12 sm:block hidden  bg-white  px-6 py-6 shadow-lg shadow-r select-none overflow-y-auto">
-            <img src="https://www.kpa.or.id/assets/img/logo/logo.png" alt="" class=" text-center mt-8 mx-auto w-40">
+            <img src="{{ asset('assets/logo.jpg') }}" alt="" class=" text-center mt-8 mx-auto w-40">
 
             {{-- <h1 class="mt-12  font-bold">Marker</h1>
             <div class="border-b border-gray-300 py-2" x-data=" {open:false}">
