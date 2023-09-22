@@ -30,7 +30,7 @@
                         <p class="text-sm">{{$data->tipologi}}</p>
                     </div>
 
-                    <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
+                    <div class="flex sm:space-x-6 space-x-2 items-center w-full whitespace-nowrap ">
                         <label class="text-bukanlepra font-semibold text-sm">Penggunaan Tanah: </label>
                         <p class="text-sm">{{$data->tata_guna}}</p>
                     </div>
