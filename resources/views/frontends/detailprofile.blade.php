@@ -22,17 +22,17 @@
                     </div>
                     <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
                         <label class="text-bukanlepra font-semibold">Organisasi: </label>
-                        <p class="">{{$data->organisasi}}</p>
+                        <p class="text-sm">{{$data->organisasi}}</p>
                     </div>
 
                     <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
                         <label class="text-bukanlepra font-semibold">Tahapan: </label>
-                        <p class="">{{$data->tipologi}}</p>
+                        <p class="text-sm">{{$data->tipologi}}</p>
                     </div>
 
                     <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
                         <label class="text-bukanlepra font-semibold">Penggunaan Tanah: </label>
-                        <p class="">{{$data->tata_guna}}</p>
+                        <p class="text-sm">{{$data->tata_guna}}</p>
                     </div>
 
 

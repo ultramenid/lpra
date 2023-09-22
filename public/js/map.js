@@ -224,7 +224,9 @@ const popupContent = function(data){
                 '<div class="flex space-x-2">'+
                     '<a style="color:black" class="font-semibold">Lokasi: </a> <a style="color:black">Desa '+data.desa_kel.toProperCase()+', Kec '+data.kab_kota.toProperCase()+', Kab/Kota '+data.kec.toProperCase()+',  '+data.provinsi.toProperCase()+'.</a>'+
                 '</div>'+
-
+                '<div class="flex space-x-2">'+
+                    '<a style="color:black" class="font-semibold">Profil: </a> <a href="profile/'+data.orig_fid+'/'+data.desa_kel+'" style="color: red">Lebih detail.</a>'+
+                '</div>'+
                 '</div>'+
             '</div>'
 }
