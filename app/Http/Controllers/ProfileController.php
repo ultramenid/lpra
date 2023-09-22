@@ -13,14 +13,14 @@ class ProfileController extends Controller
     }
 
 
-    public function getDetailProfile($slug){
-        return DB::table('profilelpra')->where('slug', $slug)->first();
+    public function getDetailProfile($fid){
+        return DB::table('profilelpra')->where('fid', $fid)->first();
     }
 
-    public function detailprofile($slug){
+    public function detailprofile($slug, $desa_kel){
         if(!$this->getDetailProfile($slug)){ return redirect('/'); }
         $nav = 'profile';
-        $title = $this->getDetailProfile($slug)->profile;
+        $title = 'LPRA '.$this->getDetailProfile($slug)->desa_kel ;
         $data = $this->getDetailProfile($slug);
         return view('frontends.detailprofile', compact('title','nav', 'data'));
     }

@@ -68,7 +68,7 @@
 
                     <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-4">Profile</h1>
                     <label class="w-full">
-                        <div   wire:click='toogleProfile'   class="cursor-pointer bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20" >{{$profile}}</div>
+                        <div   wire:click='toogleProfile'   class="cursor-pointer bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20" >{{$fid}} - {{$desa_kel}} - {{$luas}}ha</div>
                     </label>
 
                     @if ($isProfile)
@@ -76,7 +76,7 @@
                           <input   wire:model='chooseprofile' type="text" name="" id="" class="w-full mb-2  bg-gray-100  text-gray-700  rounded   border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20" placeholder="Provinsi. . .">
 
                           @foreach ($dataprofiles as $item )
-                              <a  wire:click="selectProfile('{{ $item->profil }}','{{ $item->luas_ha }}','{{ $item->rtpp }}','{{ $item->provinsi }}','{{ $item->kecamatan }}','{{ $item->kabupaten }}','{{ $item->desa }}', '{{ $item->penggunaan }}', '{{$item->tahapan}}')"  class="text-white py-1 hover:bg-gray-700 px-4">{{$item->profil}}</a>
+                              <a wire:click="selectProfile('{{ $item->orig_fid }}','{{ $item->luas_ha }}','{{ $item->subjek_kk }}','{{ $item->provinsi }}','{{ $item->kec }}','{{ $item->kab_kota }}','{{ $item->desa_kel }}', '{{ $item->tata_guna }}', '{{$item->tipologi}}', '{{$item->organisasi}}')" class="text-white py-1 hover:bg-gray-700 px-4">{{$item->orig_fid}} - {{$item->desa_kel}} - {{$item->luas_ha}}ha</a>
                           @endforeach
                       </div>
                     @endif
@@ -87,17 +87,19 @@
                     <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-4 mt-6">Luas garapan</h1>
                     <input  type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20"  wire:model.defer='luas' >
 
+                    <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-4 mt-6">Organisasi</h1>
+                    <input  type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20"  wire:model.defer='organisasi' >
+
                     <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-4 mt-6">Jumlah Petani</h1>
                     <input  type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20"  wire:model.defer='jumlahpetani' >
 
                     <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-4 mt-6">Penggunaan Tanah</h1>
-                    <input  type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20"  wire:model.defer='penggunaantanah' >
+                    <input  type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20"  wire:model.defer='tata_guna' >
 
                     <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-4 mt-6">Tahapan</h1>
-                    <input  type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20"  wire:model.defer='tahapan' >
+                    <input  type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20"  wire:model.defer='tipologi' >
 
-                    <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-4 mt-6">Bagian Tanah</h1>
-                    <input  type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-2 px-4 focus:outline-none border-gray-300 dark:border-opacity-20"  wire:model.defer='bagiantanah' >
+
 
 
 

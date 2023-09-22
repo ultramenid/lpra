@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('profilelpra', function (Blueprint $table) {
-            $table->string('tahapan');
+            $table->string('tipologi');
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('profilelpra', function (Blueprint $table) {
-            $table->dropColumn('lpra');
+            $table->dropColumn('tipologi');
         });
     }
 };

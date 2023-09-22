@@ -3,13 +3,13 @@
 @section('content')
     @include('partials.navdetail')
 
-    <div class="max-w-4xl px-4  mx-auto sm:mt-12 mt-4">
-        <div class="grid sm:grid-cols-2 grids-cols-1 gap-6 w-full">
+    <div class="max-w-6xl px-4 mx-auto sm:mt-12 mt-4">
+        <div class="grid sm:grid-cols-3 grids-cols-1 gap-6 w-full">
             <div class=" col-span-1 sm:h-80 h-full">
-                <img src="{{ asset('storage/photos/shares/'.$data->img) }}" alt="" class="w-full h-full">
+                <img src="{{ asset('storage/photos/shares/'.$data->img) }}" alt="" class="object-center object-cover w-full h-full">
             </div>
-            <div class="col-span-1">
-                <h1 class="text-bukanlepra font-semibold text-2xl">{{$data->profile}}</h1>
+            <div class="col-span-2">
+                <h1 class="text-bukanlepra font-semibold text-2xl">LPRA {{$data->desa_kel}}</h1>
                 <div class="mt-4 flex flex-col space-y-1">
                     <div class="flex sm:space-x-4 space-x-2 items-center">
                         <label class="text-bukanlepra font-semibold">Luas: </label>
@@ -20,30 +20,32 @@
                         <label class="text-bukanlepra font-semibold">Jumlah Petani: </label>
                         <p class="">{{$data->jumlahpetani}}</p>
                     </div>
+                    <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
+                        <label class="text-bukanlepra font-semibold">Organisasi: </label>
+                        <p class="">{{$data->organisasi}}</p>
+                    </div>
 
                     <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
                         <label class="text-bukanlepra font-semibold">Tahapan: </label>
-                        <p class="">{{$data->tahapan}}</p>
+                        <p class="">{{$data->tipologi}}</p>
                     </div>
 
                     <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
                         <label class="text-bukanlepra font-semibold">Penggunaan Tanah: </label>
-                        <p class="">{{$data->penggunaantanah}}</p>
-                    </div>
-
-                    <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
-                        <label class="text-bukanlepra font-semibold">Bagian Tanah: </label>
-                        <p class="">{{$data->bagiantanah}}</p>
+                        <p class="">{{$data->tata_guna}}</p>
                     </div>
 
 
                     <div class="flex sm:space-x-4 space-x-2">
                         <label class="text-bukanlepra font-semibold">Lokasi: </label>
-                        <p class=" text-sm ">{{$data->lokasi}}</p>
+                        <p class=" text-sm ">{{$data->desa_kel}}, {{$data->kec}}, {{$data->kab_kota}}, {{$data->provinsi}}</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="max-w-4xl px-4  mx-auto ">
+
 
         <div class="mt-12">
             <h1 class="text-bukanlepra font-bold mb-4 text-xl">Sejarah HGU/HGB Perkebunan</h1>

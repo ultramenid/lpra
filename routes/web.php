@@ -23,7 +23,7 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/profile', [ProfileController::class, 'list'])->name('profile');
 Route::get('/updates', [UpdatesController::class, 'updates'])->name('updates');
 Route::get('/cms/addprofile', [ProfileController::class, 'addprofile']);
-Route::get('/profile/{slug}', [ProfileController::class, 'detailprofile']);
+Route::get('/profile/{fid}/{desa_kel}', [ProfileController::class, 'detailprofile']);
 Route::get('/update/{slug}', [UpdatesController::class, 'detailUpdate']);
 Route::get('/cms/addabout', [AboutController::class, 'addabout']);
 Route::get('/cms/addupdates', [UpdatesController::class, 'addupdates']);

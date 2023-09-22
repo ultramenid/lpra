@@ -42,7 +42,7 @@ var IUPHHK_adm = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
 })
 
 var poly = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-    layers: 'kpa:LPRA_KPA19_JUNI_2023',
+    layers: 'kpa:LPRA_KPA_22_Sep_2023',
     transparent: true,
     format: 'image/png'
 }).addTo(map);
@@ -290,7 +290,7 @@ function handleJson(data) {
             service: 'WFS',
             version: '1.1.0',
             request: 'GetFeature',
-            typename: 'kpa:LPRA_point_v1',
+            typename: 'kpa:LPRA_KPA_22_Sep_2023_point',
             srsname: 'EPSG:4326',
             outputFormat: 'text/javascript',
         },
@@ -421,7 +421,7 @@ function submitLayer(){
             service: 'WFS',
             version: '1.1.1',
             request: 'GetFeature',
-            typename: 'kpa:LPRA_point_v1',
+            typename: 'kpa:LPRA_KPA_22_Sep_2023_point',
             CQL_FILTER: "tipologi = '"+hutan.toUpperCase()+"' AND status= 'HUTAN'" ,
             srsname: 'EPSG:4326',
             outputFormat: 'text/javascript',
@@ -438,7 +438,7 @@ function submitLayer(){
                 service: 'WFS',
                 version: '1.1.1',
                 request: 'GetFeature',
-                typename: 'kpa:LPRA_point_v1',
+                typename: 'kpa:LPRA_KPA_22_Sep_2023_point',
                 CQL_FILTER: "status= 'HUTAN'" ,
                 srsname: 'EPSG:4326',
                 outputFormat: 'text/javascript',
@@ -462,7 +462,7 @@ function submitLayer(){
             service: 'WFS',
             version: '1.1.1',
             request: 'GetFeature',
-            typename: 'kpa:LPRA_point_v1',
+            typename: 'kpa:LPRA_KPA_22_Sep_2023_point',
             CQL_FILTER: "tipologi = '"+kebun.toUpperCase()+"' AND status= 'NON-HUTAN'" ,
             srsname: 'EPSG:4326',
             outputFormat: 'text/javascript',
@@ -478,7 +478,7 @@ function submitLayer(){
                 service: 'WFS',
                 version: '1.1.1',
                 request: 'GetFeature',
-                typename: 'kpa:LPRA_point_v1',
+                typename: 'kpa:LPRA_KPA_22_Sep_2023_point',
                 CQL_FILTER: "status= 'NON-HUTAN'" ,
                 srsname: 'EPSG:4326',
                 outputFormat: 'text/javascript',
@@ -502,7 +502,7 @@ function resetLayer(){
             service: 'WFS',
             version: '1.1.1',
             request: 'GetFeature',
-            typename: 'kpa:LPRA_point_v1',
+            typename: 'kpa:LPRA_KPA_22_Sep_2023_point',
             srsname: 'EPSG:4326',
             outputFormat: 'text/javascript',
             },

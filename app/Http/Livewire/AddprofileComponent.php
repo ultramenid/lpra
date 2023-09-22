@@ -16,7 +16,7 @@ class AddprofileComponent extends Component
 {
     use WithFileUploads;
     public $isProfile, $isactive = 1;
-    public $tahapan, $photo, $profile = '. . .',$jumlahpetani, $chooseprofile, $lokasi, $luas, $penggunaantanah, $bagiantanah, $sejarahperkebunan, $sejarahpenguasaan, $upayadanperkembangan, $analisishukum, $kesimpulan, $rekomendasi;
+    public $tipologi, $photo,$fid, $provinsi, $kab_kota, $kec, $desa_kel, $organisasi ,$jumlahpetani, $chooseprofile, $lokasi, $luas, $tata_guna,  $sejarahperkebunan, $sejarahpenguasaan, $upayadanperkembangan, $analisishukum, $kesimpulan, $rekomendasi;
 
     public function uploadImage(){
         $file = $this->photo->store('public/photos/shares');
@@ -42,10 +42,10 @@ class AddprofileComponent extends Component
 
     }
 
-    public function checkProfile($profile){
+    public function checkProfile($fid){
         return DB::table('profilelpra')
-                ->select('profile')
-                ->where('profile', $profile)
+                ->select('fid')
+                ->where('fid', $fid)
                 ->first();
 
     }
@@ -56,25 +56,27 @@ class AddprofileComponent extends Component
                 'service' => 'wfs',
                 'version' => '1.1.1',
                 'request' => 'GetFeature',
-                'typename' => 'kpa:KPA_point',
-                'propertyName' => 'profil,provinsi,kabupaten,desa,kecamatan,luas_ha,penggunaan,rtpp,lat,long,tahapan',
-                'cql_filter' => "profil LIKE '%". $this->chooseprofile ."%'",
+                'typename' => 'kpa:LPRA_KPA_22_Sep_2023_point',
+                'propertyName' => 'orig_fid,provinsi,kab_kota,desa_kel,kec,luas_ha,tata_guna,organisasi,lat,long,tipologi,subjek_kk',
+                'cql_filter' => "desa_kel LIKE '%". strtoupper($this->chooseprofile) ."%'",
                 'outputFormat' => 'application/json',
             ]);
             $response = json_decode($req, true);
 
+            // dd($response);
             $collection = new Collection();
             foreach ($response['features'] as $item => $key ){
                 $collection->push((object)[
-                    'profil' => $key['properties']['profil'],
+                    'orig_fid' => $key['properties']['orig_fid'],
+                    'subjek_kk' => $key['properties']['subjek_kk'],
                     'provinsi' => $key['properties']['provinsi'],
-                    'kabupaten' => $key['properties']['kabupaten'],
-                    'desa' => $key['properties']['desa'],
-                    'kecamatan' => $key['properties']['kecamatan'],
+                    'kab_kota' => $key['properties']['kab_kota'],
+                    'desa_kel' => $key['properties']['desa_kel'],
+                    'kec' => $key['properties']['kec'],
                     'luas_ha' => $key['properties']['luas_ha'],
-                    'penggunaan' => $key['properties']['penggunaan'],
-                    'rtpp' => $key['properties']['rtpp'],
-                    'tahapan' => $key['properties']['tahapan'],
+                    'tata_guna' => $key['properties']['tata_guna'],
+                    'organisasi' => $key['properties']['organisasi'],
+                    'tipologi' => $key['properties']['tipologi'],
                 ]);
             }
 
@@ -83,8 +85,8 @@ class AddprofileComponent extends Component
 
     }
 
-    public function setLokasi($provinsi,$kabupaten,$kecamatan,$desa){
-        $result = $desa . ', ' . $kecamatan . ', ' . $kabupaten . ', ' . $provinsi;
+    public function setLokasi($provinsi,$kab_kota,$kec,$desa_kel){
+        $result = $desa_kel . ', ' . $kec . ', ' . $kab_kota . ', ' . $provinsi;
         return $result;
         // dd($result);
     }
@@ -93,46 +95,66 @@ class AddprofileComponent extends Component
         $this->isProfile = !$this->isProfile;
     }
 
-    public function selectProfile($profile,$luas_ha,$jumlahpetani,$provinsi,$kecamatan,$kabupaten,$desa, $penggunaantanah, $tahapan){
-        if($this->checkProfile($profile)){
+    public function selectProfile($orig_fid,$luas_ha,$jumlahpetani,$provinsi,$kec,$kab_kota,$desa_kel, $tata_guna, $tipologi, $organisasi){
+
+        if($this->checkProfile($orig_fid)){
             $message = 'Profile sudah ada di database.';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             $this->isProfile = false;
         }else{
-            $this->profile = $profile;
-            $this->lokasi = $this->setLokasi($provinsi,$kabupaten,$kecamatan,$desa);
+            $this->fid = $orig_fid;
+            $this->desa_kel = $desa_kel;
+            $this->luas = $luas_ha;
+            $this->lokasi = $this->setLokasi($provinsi,$kab_kota,$kec,$desa_kel);
+            $this->provinsi = $provinsi;
+            $this->kab_kota = $kab_kota;
+            $this->kec = $kec;
             $this->luas = $luas_ha;
             $this->jumlahpetani = $jumlahpetani;
-            $this->penggunaantanah = $penggunaantanah;
-            $this->tahapan = $tahapan;
+            $this->tata_guna = $tata_guna;
+            $this->tipologi = $tipologi;
+            $this->organisasi = $organisasi;
             $this->isProfile = false;
         };
-
+        // dd($this->fid);
     }
 
     public function storeProfile(){
-        if($this->manualValidation()){
-            DB::table('profilelpra')->insert([
-                'profile' => $this->profile,
-                'slug' => Str::slug($this->profile,'-'),
-                'img' => $this->uploadImage(),
-                'lokasi' => $this->lokasi,
-                'luas' => $this->luas,
-                'tahapan' => $this->tahapan,
-                'jumlahpetani' => $this->jumlahpetani,
-                'penggunaantanah' => $this->penggunaantanah,
-                'bagiantanah' => $this->bagiantanah,
-                'sejarahhgu' => $this->sejarahperkebunan,
-                'sejarahpenguasaan' => $this->sejarahpenguasaan,
-                'upayamasyarakat' => $this->upayadanperkembangan,
-                'analisishukum' => $this->analisishukum,
-                'kesimpulan' => $this->kesimpulan,
-                'Rekomendasi' => $this->rekomendasi,
-                'is_active' => $this->isactive,
-                'created_at' => Carbon::now('Asia/Jakarta')
-            ]);
+        if($this->checkProfile($this->fid)){
+            $message = 'Profile sudah ada di database.';
+            $type = 'error'; //error, success
+            $this->emit('toast',$message, $type);
+        }else{
+            if($this->manualValidation()){
+                DB::table('profilelpra')->insert([
+                    'fid' => $this->fid,
+                    'img' => $this->uploadImage(),
+                    'provinsi' => $this->provinsi,
+                    'kab_kota' => $this->kab_kota,
+                    'kec' => $this->kec,
+                    'desa_kel' => $this->desa_kel,
+                    'luas' => $this->luas,
+                    'tipologi' => $this->tipologi,
+                    'jumlahpetani' => $this->jumlahpetani,
+                    'organisasi' => $this->organisasi,
+                    'tata_guna' => $this->tata_guna,
+                    'sejarahhgu' => $this->sejarahperkebunan,
+                    'sejarahpenguasaan' => $this->sejarahpenguasaan,
+                    'upayamasyarakat' => $this->upayadanperkembangan,
+                    'analisishukum' => $this->analisishukum,
+                    'kesimpulan' => $this->kesimpulan,
+                    'Rekomendasi' => $this->rekomendasi,
+                    'is_active' => $this->isactive,
+                    'created_at' => Carbon::now('Asia/Jakarta')
+                ]);
+
+                $message = 'Profile berhasil tersimpan';
+                $type = 'success'; //error, success
+                $this->emit('toast',$message, $type);
+            }
         }
+
     }
 
     public function render(){
@@ -143,7 +165,7 @@ class AddprofileComponent extends Component
 
 
     public function manualValidation(){
-        if($this->profile == '' ){
+        if($this->fid == '' ){
             $message = 'Nama profile harus di isi';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
@@ -163,13 +185,8 @@ class AddprofileComponent extends Component
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
-        }elseif($this->penggunaantanah == '' ){
+        }elseif($this->tata_guna == '' ){
             $message = 'Penggunaan tanah harus diisi';
-            $type = 'error'; //error, success
-            $this->emit('toast',$message, $type);
-            return;
-        }elseif($this->bagiantanah == '' ){
-            $message = 'Bagian tanah harus diisi';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
