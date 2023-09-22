@@ -9,35 +9,35 @@
                 <img src="{{ asset('storage/photos/shares/'.$data->img) }}" alt="" class="object-center object-cover w-full h-full">
             </div>
             <div class="col-span-2">
-                <h1 class="text-bukanlepra font-semibold text-2xl">LPRA {{$data->desa_kel}}</h1>
+                <h1 class="text-bukanlepra font-semibold  text-2xl">LPRA {{$data->desa_kel}}</h1>
                 <div class="mt-4 flex flex-col space-y-1">
                     <div class="flex sm:space-x-4 space-x-2 items-center">
-                        <label class="text-bukanlepra font-semibold">Luas: </label>
+                        <label class="text-bukanlepra font-semibold text-sm">Luas: </label>
                         <p class="">{{$data->luas}} ha</p>
                     </div>
 
                     <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
-                        <label class="text-bukanlepra font-semibold">Jumlah Petani: </label>
+                        <label class="text-bukanlepra font-semibold text-sm">Jumlah Petani: </label>
                         <p class="">{{$data->jumlahpetani}}</p>
                     </div>
                     <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
-                        <label class="text-bukanlepra font-semibold">Organisasi: </label>
+                        <label class="text-bukanlepra font-semibold text-sm">Organisasi: </label>
                         <p class="text-sm">{{$data->organisasi}}</p>
                     </div>
 
                     <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
-                        <label class="text-bukanlepra font-semibold">Tahapan: </label>
+                        <label class="text-bukanlepra font-semibold text-sm">Tipologi: </label>
                         <p class="text-sm">{{$data->tipologi}}</p>
                     </div>
 
                     <div class="flex sm:space-x-4 space-x-2 items-center w-full ">
-                        <label class="text-bukanlepra font-semibold">Penggunaan Tanah: </label>
+                        <label class="text-bukanlepra font-semibold text-sm">Penggunaan Tanah: </label>
                         <p class="text-sm">{{$data->tata_guna}}</p>
                     </div>
 
 
                     <div class="flex sm:space-x-4 space-x-2">
-                        <label class="text-bukanlepra font-semibold">Lokasi: </label>
+                        <label class="text-bukanlepra font-semibold text-sm">Lokasi: </label>
                         <p class=" text-sm ">{{$data->desa_kel}}, {{$data->kec}}, {{$data->kab_kota}}, {{$data->provinsi}}</p>
                     </div>
                 </div>
