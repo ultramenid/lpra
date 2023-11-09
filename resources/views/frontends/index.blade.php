@@ -110,6 +110,7 @@
             }">
                 <h2>Status / Klaim</h2>
                 <select x-model="status" id="status" class="text-sm w-full mb-2 bg-gray-100  text-gray-700  rounded  border  py-2 px-4 focus:outline-none border-simontono">
+                    <option value="kosong">...</option>
                     <template x-for="item in options" :key="item">
                         <option :value="item" x-text="item"></option>
                     </template>
@@ -192,7 +193,7 @@
                 <div  class=" flex items-center">
 
                     <div class=" flex justify-between w-full items-center cursor-pointer" @click="open=!open ">
-                        <label  class="w-full ml-1 text-xs font-medium text-gray-500">Izin</label>
+                        <label  class="w-full ml-1 text-xs font-medium text-gray-500">Izin / Hak Atas Tanah</label>
                         <div>
                             <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-0': open, 'rotate-180': !open}" class="inline w-4 h-4 items-center mt-1 ml-1 transition-transform duration-200 transform "><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                         </div>

@@ -18,7 +18,7 @@
 
                 <div class="flex space-x-2 text-xs text-gray-500 font-light">
                     <a>Jumlah Petani: </a>
-                    <a>{{$item->jumlahpetani}}</a>
+                    <a>{{$item->jumlahpetani}} KK</a>
                 </div>
 
 

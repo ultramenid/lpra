@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/airbnb.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="{{ asset('js/dark.js') }}"></script>
 
     @livewireScripts
 

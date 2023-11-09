@@ -55,9 +55,9 @@ var baseLayers = {
 };
 
 var overlays = {
-    "FOREST": forestADM,
+    "Kawasan Hutan": forestADM,
     "HGU" : hgu,
-    "IUPHHK": IUPHHK_adm,
+    "PBPH ": IUPHHK_adm,
     "POLYGON LPRA": poly,
 };
 
@@ -215,7 +215,7 @@ const popupContent = function(data){
                 '</div>'+
                 '</div>'+
                     '<div class="flex space-x-2">'+
-                    '<a style="color:black" class="font-semibold">Perusahaan: </a> <a style="color:black">'+data.perusahaan+'</a>' +
+                    '<a style="color:black" class="font-semibold">Berkonflik dengan: </a> <a style="color:black">'+data.perusahaan+'</a>' +
                 '</div>'+
                 '</div>'+
                     '<div class="flex space-x-2">'+
@@ -495,6 +495,12 @@ function submitLayer(){
 }
 
 function resetLayer(){
+        var status = document.getElementById("status");
+        var hutan = document.getElementById("hutan");
+        var kebun = document.getElementById("kebun");
+        status.value = "kosong";
+        hutan.value = "kosong";
+        kebun.value = "kosong";
         map.flyTo([0.7893, 118.5213],5)
         pruneCluster.RemoveMarkers(markershutan);
         pruneCluster.RemoveMarkers(markersnonhutan);

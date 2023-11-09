@@ -15,13 +15,14 @@ class AboutController extends Controller
 
     public function index(){
         $title = 'About LPRA';
-        $nav = 'about';
+        $nav = 'pages';
         $data = $this->getAbout();
         return view('frontends.about', compact('title', 'nav', 'data'));
     }
 
     public function addabout(){
         $title = 'About Page';
-        return view('backends.addabout', compact('title'));
+        $nav = 'pages';
+        return view('backends.addabout', compact('title','nav'));
     }
 }

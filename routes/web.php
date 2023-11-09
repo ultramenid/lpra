@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UpdatesController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,25 +26,40 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/profile', [ProfileController::class, 'list'])->name('profile');
 Route::get('/updates', [UpdatesController::class, 'updates'])->name('updates');
-Route::get('/cms/addprofile', [ProfileController::class, 'addprofile']);
 Route::get('/profile/{fid}/{desa_kel}', [ProfileController::class, 'detailprofile']);
 Route::get('/update/{slug}', [UpdatesController::class, 'detailUpdate']);
-Route::get('/cms/addabout', [AboutController::class, 'addabout']);
-Route::get('/cms/addupdates', [UpdatesController::class, 'addupdates']);
 
 
 
-Route::group(['prefix' => 'cms/lpra-filemanager'], function () {
-    \UniSharp\LaravelFilemanager\Lfm::routes();
-});
+
+
 
 
 Route::group(['middleware' => 'checkSession'], function () {
+    Route::get('/cms/dashboard', [DashboardController::class, 'index']);
+    Route::get('/cms/profiles', [ProfileController::class, 'profiles']);
+    Route::get('/cms/addabout', [AboutController::class, 'addabout']);
+    Route::get('/cms/addupdates', [UpdatesController::class, 'addupdates']);
+    Route::get('/cms/addprofile', [ProfileController::class, 'addprofile']);
+    Route::get('/cms/settings', [SettingsController::class, 'index']);
+    Route::get('/cms/settings', [SettingsController::class, 'index']);
 
+    Route::get('/cms/editprofile/{id}', [ProfileController::class, 'editprofile']);
+
+
+    Route::group(['prefix' => 'cms/lpra-filemanager'], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });
 
 
 //if there is no session , redirect to login page
 Route::group(['middleware' => 'hasSession'], function () {
     Route::get('cms/login', [LoginController::class, 'index'])->name('login');
+});
+
+//route logout
+Route::get('/cms/page/logout', function () {
+    session()->flush();
+    return redirect('/cms/login');
 });

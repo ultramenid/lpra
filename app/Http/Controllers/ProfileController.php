@@ -9,7 +9,8 @@ class ProfileController extends Controller
 {
     public function addprofile(){
         $title = 'Tambah Profile ';
-        return view('backends.addprofile', compact('title'));
+        $nav = "profiles";
+        return view('backends.addprofile', compact('title', 'nav'));
     }
 
 
@@ -29,5 +30,18 @@ class ProfileController extends Controller
         $title = 'Profiles - LPRA';
         $nav = 'profile';
         return view('frontends.profile', compact('title', 'nav'));
+    }
+
+    public function profiles(){
+        $title = 'Profiles';
+        $nav = 'profiles';
+        return view('backends.profiles', compact('title', 'nav'));
+    }
+
+    public function editprofile($id){
+        $title = 'Edit Profiles';
+        $id = $id;
+        $nav = 'profiles';
+        return view('backends.editprofiles', compact('id', 'nav', 'title'));
     }
 }
