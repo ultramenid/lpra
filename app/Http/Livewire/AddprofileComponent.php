@@ -56,7 +56,7 @@ class AddprofileComponent extends Component
                 'service' => 'wfs',
                 'version' => '1.1.1',
                 'request' => 'GetFeature',
-                'typename' => 'kpa:LPRA_KPA_22_Sep_2023_point',
+                'typename' => 'kpa:20231203_LPRA_0107_point',
                 'propertyName' => 'orig_fid,provinsi,kab_kota,desa_kel,kec,luas_ha,tata_guna,organisasi,lat,long,tipologi,subjek_kk',
                 'cql_filter' => "desa_kel LIKE '%". strtoupper($this->chooseprofile) ."%'",
                 'outputFormat' => 'application/json',

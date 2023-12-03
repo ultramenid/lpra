@@ -10,7 +10,15 @@ class UpdatesController extends Controller
 {
     public function addupdates(){
         $title = 'Tambah updates ';
-        return view('backends.addupdates', compact('title'));
+        $nav = 'updates';
+        return view('backends.addupdates', compact('title', 'nav'));
+    }
+
+    public function editupdates($id){
+        $id = $id;
+        $title = 'Edit';
+        $nav = 'updates';
+        return view('backends.editupdates', compact('title', 'nav', 'id'));
     }
 
     public function getDetailUpdate($slug){
@@ -38,5 +46,11 @@ class UpdatesController extends Controller
         $updates = $this->getUpdates();
         // dd($this->getUpdates());
         return view('frontends.updates', compact('title', 'nav', 'updates'));
+    }
+
+    public function index(){
+        $title = 'Updates - LPRA';
+        $nav = 'updates';
+        return view('backends.updates', compact('title', 'nav'));
     }
 }

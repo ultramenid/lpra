@@ -61,12 +61,7 @@ class AddupdateComponent extends Component
                 'slug' => Str::slug($this->titleID,'-').'-'.Carbon::now('Asia/Jakarta')->format('d-m-y-h-i-s') ,
                 'created_at' => Carbon::now('Asia/Jakarta')
             ]);
-
-        $this->clearForm();
-         //passing to toast
-         $message = 'Successfully add new update';
-         $type = 'success'; //error, success
-         $this->emit('toast',$message, $type);
+            redirect()->to('/cms/updates');
         }
 
 

@@ -5,7 +5,7 @@
        <div class="flex space-x-2">
        <a style="color:black" class="font-semibold">Pelaku:</a> <a style="color:black">feature.properties.pelaku</a>
        </div>
-                           <div class="flex space-x-2">
+        <div class="flex space-x-2">
            <a style="color:black" class="font-semibold">Jumlah Korban: </a> <a style="color:black">feature.properties.jumlahkorban</a>
        </div>
        <div class="flex space-x-2">

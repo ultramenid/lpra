@@ -50,7 +50,7 @@
                         @forelse ($posts as $item)
                         <tr>
                             <td class="px-6 py-4 break-words  text-newgray-700 dark:text-gray-300">
-                                <a class="text-sm font-bold" href="{{ url('/cms/editprofile/'.$item->id) }}">LPRA {{ $item->desa_kel }}</a>
+                                <a class="text-sm font-bold" href="{{ url('/cms/editprofile/'.$item->id) }}">{{$item->fid}} LPRA {{ $item->desa_kel }}</a>
                                 <div class="text-xs">
                                     {{$item->provinsi}}, {{$item->kab_kota}}, {{$item->kec}}, {{$item->desa_kel}}
                                 </div>

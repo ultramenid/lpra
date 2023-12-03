@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="">
-    @include('partials.navdetail')
+    @include('partials.frontendNav')
 
     <div class="max-w-5xl px-4  mx-auto mt-4">
         <div class="grid md:grid-cols-3 grid-cols-1 gap-10 md:mt-12 mt-6">
@@ -27,7 +27,7 @@
          </div>
     </div>
 
-    @include('partials.footer')
+    @include('partials.frontendFooter')
 
 </div>
 @endsection

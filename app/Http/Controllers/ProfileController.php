@@ -20,7 +20,7 @@ class ProfileController extends Controller
 
     public function detailprofile($slug, $desa_kel){
         if(!$this->getDetailProfile($slug)){ return redirect('/'); }
-        $nav = 'profile';
+        $nav = 'profiles';
         $title = 'LPRA '.$this->getDetailProfile($slug)->desa_kel ;
         $data = $this->getDetailProfile($slug);
         return view('frontends.detailprofile', compact('title','nav', 'data'));
@@ -28,7 +28,7 @@ class ProfileController extends Controller
 
     public function list(){
         $title = 'Profiles - LPRA';
-        $nav = 'profile';
+        $nav = 'profiles';
         return view('frontends.profile', compact('title', 'nav'));
     }
 

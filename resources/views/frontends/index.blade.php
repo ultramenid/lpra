@@ -106,8 +106,8 @@
                 status: 'Kawasan Hutan',
                 options: ['Kawasan Hutan','Kebun / APL Lainnya'],
                 hutans: ['Aset Pemerintah Daerah','Klaim Hutan Perhutani','Konsesi Hutan Produksi', 'Penetapan Hutan Lindung', 'Penetapan Hutan Produksi', 'Zona Otorita Pariwisata', 'Pelepasan Kawasan Hutan'],
-                kebuns: ['HGB Habis Perusahaan Swasta', 'HGU Habis Perkebunan Negara', 'HGU Habis Perkebunan Swasta', 'HGU Terlantar Perkebunan Negara', 'HGU Terlantar Perkebunan Swasta', 'Izin Usaha Pertambangan', 'Redistribusi Tanah']
-            }">
+                kebuns: ['HGB Habis Perusahaan Swasta', 'HGU Habis Perkebunan Negara', 'HGU Habis Perkebunan Swasta', 'HGU Terlantar Perkebunan Negara', 'HGU Terlantar Perkebunan Swasta', 'Izin Usaha Pertambangan', 'Redistribusi']
+                }">
                 <h2>Status / Klaim</h2>
                 <select x-model="status" id="status" class="text-sm w-full mb-2 bg-gray-100  text-gray-700  rounded  border  py-2 px-4 focus:outline-none border-simontono">
                     <option value="kosong">...</option>
@@ -222,6 +222,9 @@
             </div>
 
 
+            <livewire:statistik-component />
+
+
         </div>
         <div id="map" class="h-screen w-full z-10 "></div>
     </div>
@@ -232,5 +235,9 @@
 @endsection
 
 @push('scripts')
+    <script>
+        var data = JSON.parse('<?php echo $data  ?>');
+        console.log(data)
+    </script>
     <script src="{{ asset('js/map.js') }}"></script>
 @endpush

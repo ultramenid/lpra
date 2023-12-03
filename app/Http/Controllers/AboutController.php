@@ -15,7 +15,7 @@ class AboutController extends Controller
 
     public function index(){
         $title = 'About LPRA';
-        $nav = 'pages';
+        $nav = 'about';
         $data = $this->getAbout();
         return view('frontends.about', compact('title', 'nav', 'data'));
     }

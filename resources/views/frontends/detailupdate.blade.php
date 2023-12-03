@@ -1,10 +1,11 @@
 @extends('layouts.index')
 
 @section('content')
-    @include('partials.navdetail')
+    @include('partials.frontendNav')
 
     <div class="max-w-4xl mx-auto px-4 mt-12" >
         <h1 class="text-4xl font-bold">{{$data->titleID}}</h1>
+        <a class="font-extralight"> {{ \Carbon\Carbon::parse($data->publishdate)->format('d F Y')}} </a>
         <p class=" max-w-2xl mt-6 font-light">{{$data->descID}}
         </p>
         <div class="mt-6">
@@ -18,5 +19,6 @@
 
     </div>
 
-    @include('partials.footer')
+    @include('partials.frontendFooter')
+
 @endsection

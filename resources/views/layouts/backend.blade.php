@@ -17,7 +17,7 @@
 
 </head>
 
-<body class="font-sans selection-bg dark:selection-bg bg-gray-100 dark:bg-newgray-900">
+<body class="font-backend selection-bg dark:selection-bg bg-gray-100 dark:bg-newgray-900">
 
     @yield('content')
     @stack('scripts')

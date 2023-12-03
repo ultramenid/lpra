@@ -22,12 +22,17 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 |
 */
 
-Route::get('/', [IndexController::class, 'index'])->name('index');
+Route::get('/', [IndexController::class, 'beranda'])->name('beranda');
+Route::get('/map', [IndexController::class, 'index'])->name('index');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/profile', [ProfileController::class, 'list'])->name('profile');
 Route::get('/updates', [UpdatesController::class, 'updates'])->name('updates');
 Route::get('/profile/{fid}/{desa_kel}', [ProfileController::class, 'detailprofile']);
 Route::get('/update/{slug}', [UpdatesController::class, 'detailUpdate']);
+
+
+Route::get('/service/lpra', [IndexController::class, 'getLPRA']);
+
 
 
 
@@ -37,6 +42,7 @@ Route::get('/update/{slug}', [UpdatesController::class, 'detailUpdate']);
 
 Route::group(['middleware' => 'checkSession'], function () {
     Route::get('/cms/dashboard', [DashboardController::class, 'index']);
+    Route::get('/cms/updates', [UpdatesController::class, 'index']);
     Route::get('/cms/profiles', [ProfileController::class, 'profiles']);
     Route::get('/cms/addabout', [AboutController::class, 'addabout']);
     Route::get('/cms/addupdates', [UpdatesController::class, 'addupdates']);
@@ -45,6 +51,7 @@ Route::group(['middleware' => 'checkSession'], function () {
     Route::get('/cms/settings', [SettingsController::class, 'index']);
 
     Route::get('/cms/editprofile/{id}', [ProfileController::class, 'editprofile']);
+    Route::get('/cms/editupdates/{id}', [UpdatesController::class, 'editupdates']);
 
 
     Route::group(['prefix' => 'cms/lpra-filemanager'], function () {

@@ -1,8 +1,47 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700;800;900&family=Oswald:wght@200;300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+.info {
+    padding: 6px 8px;
+    font: 14px/16px Inconsolata, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
+
+
+.legend {
+    line-height: 18px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.7;
+}
+
+.hover\:bg-nav-slide:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(144 88 62 / var(--tw-bg-opacity));
+}
+
+.bg-nav-slide{
+    --tw-bg-opacity: 1;
+    background-color: rgb(144 88 62 / var(--tw-bg-opacity));
+}
+
+.bg-filter{
+    background-color: #C6AB9E;
+}
 
 .bg-nav{
     background-color: #96404C;
@@ -20,6 +59,14 @@
     color: #96404C;
 }
 
+.border-b-1 {
+    border-bottom-width: .1px;
+}
+
+.border-t-1 {
+    border-top-width: .1px;
+}
+
 .bg-hutan {
     background-color: #16DB65;
 }
@@ -35,4 +82,14 @@
 }
 .h-90{
     height: 84vh;
+}
+
+.dark .selection-bg ::selection {
+    background-color: #C6AB9E;
+    color: black;
+}
+
+.selection-bg ::selection {
+    background-color: #C6AB9E;
+    color: black;
 }
