@@ -81,6 +81,7 @@ class StatistikComponent extends Component
             ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
             ->where('tipologi', $this->emitData)
             ->where('status', $this->status)
+            ->orderBy('totaltipologi')
             ->groupBy('tipologi')->get();
 
             // dd($jumlah);
@@ -89,6 +90,7 @@ class StatistikComponent extends Component
                 $jumlah =  DB::table('csvmaster')
                 ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
                 ->where('status', $this->status)
+                ->orderBy('totaltipologi')
                 ->groupBy('tipologi')->get();
 
             }
@@ -96,6 +98,7 @@ class StatistikComponent extends Component
             $jumlah =  DB::table('csvmaster')
             ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
             ->groupBy('tipologi')
+            ->orderBy('totaltipologi')
             ->get();
 
 
