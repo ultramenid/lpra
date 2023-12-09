@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Str;
+
 
 class StatistikComponent extends Component
 {
@@ -107,7 +109,7 @@ class StatistikComponent extends Component
         foreach($jumlah as $item){
             $string = $item->totaltipologi;
             $int_value = (int) $string;
-             $data['tipologi'][] = $item->tipologi;
+             $data['tipologi'][] = Str::title($item->tipologi) ;
              $data['totaltipologi'][] = $int_value;
          }
         // dd($data);

@@ -16,6 +16,9 @@
     </div>
     <script>
         // document.addEventListener('livewire:load', function () {
+            String.prototype.toProperCase = function () {
+                return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+            };
             var lpraregion = JSON.parse('<?php echo $lpraregion;  ?>');
             var totaltipologi = JSON.parse('<?php echo $totaltipologi;  ?>');
             // console.log(totaltipologi)
@@ -30,6 +33,9 @@
                     }],
                     xaxis: {
                         categories: lpraregion.region
+                    },
+                    dataLabels: {
+                        enabled: false,
                     },
                     plotOptions: {
                         bar: {
@@ -61,9 +67,7 @@
                 }
                 },
                 dataLabels: {
-                    formatter: function (val, opts) {
-                        return opts.w.config.series[opts.seriesIndex].toLocaleString('en-US')+' ha'
-                    },
+                    enabled: false,
                 },
                 stroke: {
                     show: false,
@@ -97,6 +101,16 @@
                     series: [{
                         data: updated.jumlahlpra
                     }],
+                    dataLabels: {
+                        enabled: true,
+                    },
+                    tooltip: {
+                    y: {
+                            formatter: function(value) {
+                            return value ;
+                            }
+                        }
+                    },
 
                 });
                 // console.log(updated)
@@ -108,6 +122,12 @@
                         animate: true
                     },
                     series: tipologi.totaltipologi,
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function (val, opts) {
+                            return opts.w.config.series[opts.seriesIndex]+ " ha"
+                        },
+                    },
                 });
                 // console.log(updated)
             })
