@@ -7,14 +7,116 @@ use Livewire\Component;
 
 class StatistikComponent extends Component
 {
+    public $emitData, $status;
+    protected $listeners = ['test' => 'testdd'];
+    public function testdd($data, $status){
+        // dd($status);
+        $this->emitData = $data;
+        if($status == 'Kawasan Hutan'){
+            $this->status = 'hutan';
+        }elseif($status == 'Kebun / APL Lainnya'){
+            $this->status = 'non-hutan';
+        }else{
+            $this->status = false;
+        }
+        $this->emit('updateChart', $this->lpraRegion());
+        $this->emit('updateTipologi', $this->getTopologi());
+    }
     public function totalLPRA(){
-        return DB::table('csvmaster')->count('desa_kel');
+
+        if($this->status ){
+            $hutan =  DB::table('csvmaster')
+            ->where('tipologi', $this->emitData)
+            ->where('status', $this->status)
+            ->count('desa_kel');
+            if($this->emitData == 'kosong'){
+                $hutan =  DB::table('csvmaster')
+                ->where('status', $this->status)
+                ->count('desa_kel');
+            }
+            return $hutan;
+        }else{
+            return DB::table('csvmaster')
+            ->count('desa_kel');
+        }
+    }
+
+    public function lpraRegion(){
+        if($this->status ){
+            $jumlah=  DB::table('csvmaster')
+            ->selectRaw('count(status) as status, region')
+            ->where('tipologi', $this->emitData)
+            ->where('status', $this->status)
+            ->groupBy('region')
+            ->get();
+
+            if($this->emitData == 'kosong'){
+                $jumlah=  DB::table('csvmaster')
+                ->selectRaw('count(status) as status, region')
+                ->where('status', $this->status)
+                ->groupBy('region')
+                ->get();
+
+            }
+        }else{
+            $jumlah=  DB::table('csvmaster')
+            ->selectRaw('count(status) as status, region')
+            ->groupBy('region')
+            ->get();
+
+        }
+
+        foreach($jumlah as $item){
+            $data['region'][] = $item->region;
+            $data['jumlahlpra'][] = $item->status;
+        }
+        // dd($data);
+        return  json_encode($data);
+
+    }
+
+    public function getTopologi(){
+        if($this->status ){
+            $jumlah =  DB::table('csvmaster')
+            ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
+            ->where('tipologi', $this->emitData)
+            ->where('status', $this->status)
+            ->groupBy('tipologi')->get();
+
+            // dd($jumlah);
+
+            if($this->emitData == 'kosong'){
+                $jumlah =  DB::table('csvmaster')
+                ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
+                ->where('status', $this->status)
+                ->groupBy('tipologi')->get();
+
+            }
+        }else{
+            $jumlah =  DB::table('csvmaster')
+            ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
+            ->groupBy('tipologi')
+            ->get();
+
+
+        }
+
+        foreach($jumlah as $item){
+            $string = $item->totaltipologi;
+            $int_value = (int) $string;
+             $data['tipologi'][] = $item->tipologi;
+             $data['totaltipologi'][] = $int_value;
+         }
+        // dd($data);
+        return  json_encode($data);
     }
 
 
     public function render(){
-
         $totallpra = $this->totalLPRA();
-        return view('livewire.statistik-component', compact('totallpra'));
+        $lpraregion = $this->lpraRegion();
+        $totaltipologi = $this->getTopologi();
+
+        return view('livewire.statistik-component', compact('totallpra', 'lpraregion', 'totaltipologi'));
     }
 }

@@ -1,11 +1,11 @@
-@extends('layouts.index')
+@extends('layouts.map')
 
 @section('content')
 <div class="relative">
     @include('partials.nav')
     <div class="flex">
         <div class="h-screen w-3/12 sm:block hidden  bg-white  px-6 py-6 shadow-lg shadow-r select-none overflow-y-auto">
-            <img src="{{ asset('assets/logo.jpg') }}" alt="" class=" text-center mt-8 mx-auto w-40">
+            <a class="z-30 relative" href="/"><img src="{{ asset('assets/lpralogo-1.png') }}" alt="" class=" text-center mt-8 mx-auto h-16"></a>
 
             {{-- <h1 class="mt-12  font-bold">Marker</h1>
             <div class="border-b border-gray-300 py-2" x-data=" {open:false}">
@@ -237,7 +237,7 @@
 @push('scripts')
     <script>
         var data = JSON.parse('<?php echo $data  ?>');
-        console.log(data)
+        // console.log(data)
     </script>
     <script src="{{ asset('js/map.js') }}"></script>
 @endpush

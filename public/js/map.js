@@ -89,7 +89,7 @@ L.Icon.MarkerCluster = L.Icon.extend({
     },
 
     createIcon: function () {
-        // based on L.Icon.Canvas from shramov/leaflet-plugins (BSD licence)
+        // based on L.Icon.Canvas from shramov/leaflet-plugins (BSDÂ licence)
         var e = document.createElement('canvas');
         this._setIconStyles(e, 'icon');
         var s = this.options.iconSize;
@@ -411,11 +411,11 @@ function submitLayer(){
     var status = document.getElementById("status").value;
     var hutan = document.getElementById("hutan").value;
     var kebun = document.getElementById("kebun").value;
-
     if(status == 'Kawasan Hutan'){
         pruneCluster.RemoveMarkers(markershutan);
         pruneCluster.RemoveMarkers(markersnonhutan);
         pruneCluster.ProcessView();
+        Livewire.emit('test', hutan,  status )
 
         // console.log(hutan.toUpperCase())
         $.ajax('https://aws.simontini.id/geoserver/wfs',{
@@ -435,6 +435,7 @@ function submitLayer(){
         });
 
         if(hutan == 'kosong'){
+            Livewire.emit('test', hutan,  status)
             $.ajax('https://aws.simontini.id/geoserver/wfs',{
             type: 'GET',
                 data: {
@@ -457,6 +458,7 @@ function submitLayer(){
         pruneCluster.RemoveMarkers(markershutan);
         pruneCluster.RemoveMarkers(markersnonhutan);
         pruneCluster.ProcessView();
+        Livewire.emit('test', kebun, status)
 
         // console.log(hutan.toUpperCase())
         $.ajax('https://aws.simontini.id/geoserver/wfs',{
@@ -475,6 +477,8 @@ function submitLayer(){
             jsonp:'format_options'
         });
         if(kebun == 'kosong'){
+            Livewire.emit('test', kebun, status)
+
             $.ajax('https://aws.simontini.id/geoserver/wfs',{
             type: 'GET',
                 data: {
@@ -503,6 +507,7 @@ function resetLayer(){
         hutan.value = "kosong";
         kebun.value = "kosong";
         map.flyTo([0.7893, 118.5213],5)
+        Livewire.emit('test', null, false)
         pruneCluster.RemoveMarkers(markershutan);
         pruneCluster.RemoveMarkers(markersnonhutan);
         $.ajax('https://aws.simontini.id/geoserver/wfs',{
