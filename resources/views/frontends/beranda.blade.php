@@ -8,8 +8,8 @@
     <div class="relative">
         <img class="sm:h-[75vh] w-full object-cover object-bottom" src="{{ asset('assets/hero-1.jpeg') }}" alt="Lokasi Prioritas Reforma Agraria">
         <div class="max-w-6xl mx-auto">
-            <div class="absolute bottom-20">
-                <h1 class="text-white font-black tracking-wide text-6xl max-w-2xl" >Bukan tanah negara, kembalikan hak kami</h1>
+            <div class="absolute sm:bottom-20 bottom-5 sm:px-0 px-4">
+                <h1 class="text-white font-black tracking-wide sm:text-6xl text-xl  w-8/12" >Bukan tanah negara, kembalikan hak kami</h1>
                 {{-- <p class="max-w-4xl mt-6 text-xl font-light text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad obcaecati at facere dolore neque itaque quae! Impedit voluptates aperiam dicta corporis tempore, architecto voluptatum, quod quas ab eaque, aliquid delectus.</p> --}}
             </div>
         </div>
