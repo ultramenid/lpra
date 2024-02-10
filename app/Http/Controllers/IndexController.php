@@ -14,10 +14,15 @@ class IndexController extends Controller
 
 
 
-    public function index($klaim){
+    public function index($status){
         // dd($klaim);
+        if($status == 'kebun'){
+            $klaim = 'Kebun / APL Lainnya';
+        }else{
+            $klaim = $status;
+        }
         $options = ['Kawasan Hutan','Kebun / APL Lainnya'];
-        $klaim = $klaim;
+
         $nav = 'index';
         $title = 'Lokasi Prioritas Reforma Agraria';
         return view('frontends.index', compact('title','nav', 'klaim', 'options'));

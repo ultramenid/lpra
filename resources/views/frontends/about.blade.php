@@ -70,11 +70,11 @@
                 <h1 class="sm:text-2xl text-base text-bukanlepra font-semibold">Akses Peta LPRA</h1>
                 <p class="mt-2 sm:text-base text-xs">Untuk mengakses Peta Sebaran LPRA Keseluruhan, baik tipologi konflik kehutanan dan perkebunan</p>
             </a>
-            <a href="{{ route('index', ['status'=>'Kawasan Hutan']) }}" class="bg-gray-300 bg-opacity-80 px-6 py-6 h-1/3 flex flex-col justify-center">
+            <a href="{{ route('index', ['status'=>'kebun']) }}" class="bg-gray-300 bg-opacity-80 px-6 py-6 h-1/3 flex flex-col justify-center">
                 <h1 class="sm:text-2xl text-base text-bukanlepra font-semibold">LPRA Berdasarkan Tipologi Konflik Perkebunan</h1>
                 <p class="mt-2 sm:text-base text-xs">Untuk melihat sebaran LPRA tipologi konflik perkebunan dengan total 1.283.643 Juta Hektar, 157.510 Kepala Keluarga dan 589 Desa/Kampung.</p>
             </a>
-            <a href="{{ route('index', ['status'=>'Kebun / APL Lainnya']) }}" class="bg-gray-300 bg-opacity-80 px-6 py-6 h-1/3 flex flex-col justify-center">
+            <a href="{{ route('index', ['status'=>'Kawasan Hutan']) }}" class="bg-gray-300 bg-opacity-80 px-6 py-6 h-1/3 flex flex-col justify-center">
                 <h1 class="sm:text-2xl text-base text-bukanlepra font-semibold">LPRA Berdasarkan Tipologi Konflik Kehutanan</h1>
                 <p class="mt-2 sm:text-base text-xs">Untuk melihat sebaran LPRA tipologi kehutanan dengan total 405.224 Hektar, 373.452 Kepala Keluarga dan 262 Desa/Kampung</p>
             </a>
