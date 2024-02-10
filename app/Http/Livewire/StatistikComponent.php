@@ -11,6 +11,22 @@ class StatistikComponent extends Component
 {
     public $emitData, $status;
     protected $listeners = ['test' => 'testdd'];
+
+    public function mount($klaim){
+
+        if($klaim == 'Kawasan Hutan'){
+            $this->status = 'hutan';
+        }elseif($klaim == 'Kebun / APL Lainnya'){
+            $this->status = 'non-hutan';
+        }else{
+            $this->status = false;
+        }
+        // dd($this->status);
+    }
+
+    public function query(){
+
+    }
     public function testdd($data, $status){
         // dd($status);
         $this->emitData = $data;
@@ -28,9 +44,21 @@ class StatistikComponent extends Component
 
         if($this->status ){
             $hutan =  DB::table('csvmaster')
+            ->where('status', $this->status)
+            ->count('desa_kel');
+            if($this->emitData == 'kosong'){
+                $hutan =  DB::table('csvmaster')
+                ->where('status', $this->status)
+                ->count('desa_kel');
+            }
+            return $hutan;
+        }elseif($this->status && $this->emitData){
+
+            $hutan =  DB::table('csvmaster')
             ->where('tipologi', $this->emitData)
             ->where('status', $this->status)
             ->count('desa_kel');
+
             if($this->emitData == 'kosong'){
                 $hutan =  DB::table('csvmaster')
                 ->where('status', $this->status)
@@ -45,6 +73,21 @@ class StatistikComponent extends Component
 
     public function lpraRegion(){
         if($this->status ){
+            $jumlah=  DB::table('csvmaster')
+            ->selectRaw('count(status) as status, region')
+            ->where('status', $this->status)
+            ->groupBy('region')
+            ->get();
+
+            if($this->emitData == 'kosong'){
+                $jumlah=  DB::table('csvmaster')
+                ->selectRaw('count(status) as status, region')
+                ->where('status', $this->status)
+                ->groupBy('region')
+                ->get();
+
+            }
+        }elseif($this->status && $this->emitData){
             $jumlah=  DB::table('csvmaster')
             ->selectRaw('count(status) as status, region')
             ->where('tipologi', $this->emitData)
@@ -72,13 +115,30 @@ class StatistikComponent extends Component
             $data['region'][] = $item->region;
             $data['jumlahlpra'][] = $item->status;
         }
-        // dd($data);
+        // dd($jumlah);
         return  json_encode($data);
 
     }
 
     public function getTopologi(){
         if($this->status ){
+            $jumlah =  DB::table('csvmaster')
+            ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
+            ->where('status', $this->status)
+            ->orderBy('totaltipologi')
+            ->groupBy('tipologi')->get();
+
+            // dd($jumlah);
+
+            if($this->emitData == 'kosong'){
+                $jumlah =  DB::table('csvmaster')
+                ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
+                ->where('status', $this->status)
+                ->orderBy('totaltipologi')
+                ->groupBy('tipologi')->get();
+
+            }
+        }elseif($this->status && $this->emitData){
             $jumlah =  DB::table('csvmaster')
             ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
             ->where('tipologi', $this->emitData)

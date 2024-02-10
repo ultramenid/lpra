@@ -10,14 +10,16 @@ class ProfilesComponent extends Component
 {
     use WithPagination;
     public $deleteName, $deleteID, $deleter;
-    public  $paginate = 10, $search = '';
+    public  $paginate = 10, $search = '', $provinsi = '';
 
     public function getProfiles(){
         $sc = '%' . $this->search . '%';
+        $prov = '%' . $this->provinsi . '%';
         try {
             return  DB::table('profilelpra')
                         ->select('id', 'desa_kel', 'organisasi', 'img', 'provinsi', 'kab_kota', 'kec', 'luas', 'jumlahpetani', 'fid')
                         ->where('desa_kel', 'like', $sc)
+                        ->where('provinsi', 'like' , $prov)
                         ->orderByDesc('id')
                         ->paginate($this->paginate);
         } catch (\Throwable $th) {
@@ -25,8 +27,16 @@ class ProfilesComponent extends Component
         }
     }
 
+    public function getProvinsi(){
+        return DB::table('profilelpra')->select('provinsi')->distinct('provinsi')->get();
+    }
+
      // refresh page on search
      public function updatedSearch(){
+        $this->resetPage();
+    }
+
+    public function updatedProvinsi(){
         $this->resetPage();
     }
 
@@ -56,8 +66,10 @@ class ProfilesComponent extends Component
     }
     public function render()
     {
+        // dd($this->getProvinsi());
+        $provinsis = $this->getProvinsi();
         $posts = $this->getProfiles();
         // dd($posts);
-        return view('livewire.profiles-component', compact('posts'));
+        return view('livewire.profiles-component', compact('posts', 'provinsis'));
     }
 }

@@ -14,10 +14,13 @@
     <div class=" w-full py-2">
         <div class="sm:max-w-7xl  mx-auto px-4 flex items-center sm:justify-center justify-between">
             <div class="sm:px-10 px-4 py-2  ">
+                <a href="{{ route('beranda') }}" class=" font-light">Beranda</a>
+            </div>
+            <div class="sm:px-10 px-4 py-2  ">
                 <a href="{{ route('about') }}" class=" font-light">Tentang</a>
             </div>
             <div class="sm:px-10 px-4 py-2  ">
-                <a href="{{ route('index') }}" class="font-light">Peta</a>
+                <a href="{{ route('index', ['status' => 'all']) }}" class="font-light">Peta</a>
             </div>
             <div class="sm:px-10 px-4 py-2 ">
                 <a href="{{ route('profile') }}" class=" font-light">Profil</a>

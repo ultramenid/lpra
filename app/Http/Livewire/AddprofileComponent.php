@@ -165,28 +165,8 @@ class AddprofileComponent extends Component
 
 
     public function manualValidation(){
-        if($this->fid == '' ){
-            $message = 'Nama profile harus di isi';
-            $type = 'error'; //error, success
-            $this->emit('toast',$message, $type);
-            return;
-        }elseif($this->photo == ''){
+        if($this->photo == ''){
             $message = 'Gambar profile harus di isi';
-            $type = 'error'; //error, success
-            $this->emit('toast',$message, $type);
-            return;
-        }elseif($this->lokasi == '' ){
-            $message = 'Lokasi profile harus di isi';
-            $type = 'error'; //error, success
-            $this->emit('toast',$message, $type);
-            return;
-        }elseif($this->luas == '' ){
-            $message = 'Luas profile harus di isi';
-            $type = 'error'; //error, success
-            $this->emit('toast',$message, $type);
-            return;
-        }elseif($this->tata_guna == '' ){
-            $message = 'Penggunaan tanah harus diisi';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;

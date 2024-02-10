@@ -62,8 +62,8 @@
             </div>
 
 
-            {{-- tab english --}}
             <div x-show="tabs==='english'" x-cloak style="display: none !important">
+                @if (session('role_id') == 0)
                 <div class="w-full border border-gray-300 dark:border-opacity-20 rounded px-6 py-6 mb-6" x-data="{count:0}">
 
                     <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-4">Profile</h1>
@@ -105,6 +105,8 @@
 
 
                 </div>
+                @endif
+
 
                 <div class="w-full border border-gray-300 dark:border-opacity-20  px-6 py-6 mb-6">
                     <h1 class="text-2xl font-semibold  text-newbg-newgray-900 dark:text-gray-300 mb-4">Sejarah Konflik</h1>

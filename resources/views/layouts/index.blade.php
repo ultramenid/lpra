@@ -7,7 +7,9 @@
     @yield('meta')
     @livewireStyles
     @livewireScripts
-
+    <!-- Favicons -->
+	<link href="{{ asset('assets/favicon.png') }}" rel="icon">
+	<link href="{{ asset('assets/favicon.png') }}" rel="apple-touch-icon">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@6.8.4/swiper-bundle.min.css">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>

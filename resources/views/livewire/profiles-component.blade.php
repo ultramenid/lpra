@@ -12,9 +12,21 @@
         </a>
     </div>
 
-    <div class="text-left lg:w-1/4 w-full">
-        <label class="text-gray-600 dark:text-gray-300 mr-2 text-sm" >Search </label>
-        <input placeholder="" type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-3 px-4 focus:outline-none border-gray-300 dark:border-opacity-20 text-sm"  wire:model.debounce.300ms="search">
+    <div class="text-left flex gap-4">
+        <div class="lg:w-1/4 w-full">
+            <label class="text-gray-600 dark:text-gray-300 mr-2 text-sm" >Search </label>
+            <input placeholder="" type="text" class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-3 px-4 focus:outline-none border-gray-300 dark:border-opacity-20 text-sm"  wire:model.debounce.300ms="search">
+        </div>
+        <div class="lg:w-1/4 w-full flex flex-col gap-1">
+            <label class="text-gray-600 dark:text-gray-300 mr-2 text-sm" >Provinsi </label>
+            <select wire:model='provinsi' class="bg-gray-100 dark:bg-newgray-700 text-newgray-700 dark:text-gray-300 rounded w-full border  py-3 px-4 focus:outline-none border-gray-300 dark:border-opacity-20 text-sm">
+                <option value="">SEMUA PROVINSI</option>
+                @foreach ($provinsis as $item )
+                    <option value="{{$item->provinsi}}">{{$item->provinsi}}</option>
+                @endforeach
+              </select>
+        </div>
+
     </div>
     <div class="flex flex-col py-5">
         <div class="-my-2  sm:-mx-6 lg:-mx-8 ">

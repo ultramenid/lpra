@@ -53,10 +53,14 @@
 
 .border-bukanlepra {
 
-    border-color: #96404C;
+    border-color: #5F4012;
 }
 .text-bukanlepra{
-    color: #96404C;
+    color: #5F4012;
+}
+
+.text-lpra{
+    color: #5F4012;
 }
 
 .border-b-1 {
@@ -75,6 +79,9 @@
     background-color: #960200;
 }
 
+.bg-about{
+    background-color: #5F4012;
+}
 
 .leaflet-popup-content{
     width: 330px !important;

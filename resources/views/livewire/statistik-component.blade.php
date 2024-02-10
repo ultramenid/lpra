@@ -1,5 +1,5 @@
 <div class="absolute top-1 right-5 z-20">
-    <div class="bg-white bg-opacity-50 px-2 rounded mt-1 w-96 py-2 " x-data=" {legend:true}">
+    <div class="bg-white bg-opacity-50 px-2 rounded mt-1 w-96 py-2 " x-data=" {legend:false}">
         <div :class="{'w-full': legend, 'w-96': !legend}" class=" flex justify-between   items-center cursor-pointer" @click="legend=!legend ">
             <label  class="w-full mt-2 font-bold ">Statistik</label>
             <div>

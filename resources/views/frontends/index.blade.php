@@ -5,7 +5,7 @@
     @include('partials.nav')
     <div class="flex">
         <div class="h-screen w-3/12 sm:block hidden  bg-white  px-6 py-6 shadow-lg shadow-r select-none overflow-y-auto">
-            <a class="z-30 relative" href="/"><img src="{{ asset('assets/lpralogo-1.png') }}" alt="" class=" text-center mt-8 mx-auto h-16"></a>
+            <a class="z-50 relative" href="{{ route('beranda') }}"><img src="{{ asset('assets/lpralogo-1.png') }}" alt="" class=" text-center mt-8 mx-auto h-16"></a>
 
             {{-- <h1 class="mt-12  font-bold">Marker</h1>
             <div class="border-b border-gray-300 py-2" x-data=" {open:false}">
@@ -112,7 +112,7 @@
                 <select x-model="status" id="status" class="text-sm w-full mb-2 bg-gray-100  text-gray-700  rounded  border  py-2 px-4 focus:outline-none border-simontono">
                     <option value="kosong">...</option>
                     <template x-for="item in options" :key="item">
-                        <option :value="item" x-text="item"></option>
+                        <option :value="item" :selected="item === '{{$klaim}}'" x-text="item"></option>
                     </template>
                 </select>
 
@@ -222,7 +222,7 @@
             </div>
 
 
-            <livewire:statistik-component />
+            <livewire:statistik-component  :klaim=$klaim />
 
 
         </div>
@@ -236,8 +236,8 @@
 
 @push('scripts')
     <script>
-        var data = JSON.parse('<?php echo $data  ?>');
-        // console.log(data)
+        var data = '<?php echo $klaim  ?>';
+        console.log(data)
     </script>
     <script src="{{ asset('js/map.js') }}"></script>
 @endpush

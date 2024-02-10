@@ -38,7 +38,7 @@ class AddAboutComponent extends Component
 
     public function manualValidation(){
         if($this->content == ''){
-            $message = 'Content about is required';
+            $message = 'Konten about is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;

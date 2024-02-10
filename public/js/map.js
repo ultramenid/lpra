@@ -295,6 +295,7 @@ function handleJson(data) {
             request: 'GetFeature',
             typename: 'kpa:20231203_LPRA_0107_point',
             srsname: 'EPSG:4326',
+            CQL_FILTER: (data == 'Kawasan Hutan') ? "status= 'HUTAN'" : (data == 'Kebun / APL Lainnya') ? "status= 'NON-HUTAN'" : "status like '%%'",
             outputFormat: 'text/javascript',
         },
             dataType: 'jsonp',
@@ -500,14 +501,15 @@ function submitLayer(){
 }
 
 function resetLayer(){
+        console.log(data)
         var status = document.getElementById("status");
         var hutan = document.getElementById("hutan");
         var kebun = document.getElementById("kebun");
-        status.value = "kosong";
+        status.value = (data == 'all') ? "kosong" : data;
         hutan.value = "kosong";
         kebun.value = "kosong";
         map.flyTo([0.7893, 118.5213],5)
-        Livewire.emit('test', null, false)
+        Livewire.emit('test', null, (data == 'all') ? "kosong" : data)
         pruneCluster.RemoveMarkers(markershutan);
         pruneCluster.RemoveMarkers(markersnonhutan);
         $.ajax('https://aws.simontini.id/geoserver/wfs',{
@@ -518,6 +520,7 @@ function resetLayer(){
             request: 'GetFeature',
             typename: 'kpa:20231203_LPRA_0107_point',
             srsname: 'EPSG:4326',
+            CQL_FILTER: (data == 'Kawasan Hutan') ? "status= 'HUTAN'" : (data == 'Kebun / APL Lainnya') ? "status= 'NON-HUTAN'" : "status like '%%'",
             outputFormat: 'text/javascript',
             },
             dataType: 'jsonp',

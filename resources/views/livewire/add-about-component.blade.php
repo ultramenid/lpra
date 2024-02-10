@@ -2,7 +2,7 @@
     <livewire:toastr />
     <div class=" border-b border-gray-300 dark:border-opacity-20 py-16 mb-6">
         <div class="max-w-6xl mx-auto px-4  flex justify-between ">
-            <h1 class="sm:text-3xl text-xl text-newgray-900 dark:text-newgray-300 font-semibold "> About </h1>
+            <h1 class="sm:text-3xl text-xl text-newgray-900 dark:text-newgray-300 font-semibold "> Tentang LPRA </h1>
             <div class="z-30">
                 <button wire:loading.remove wire:target='storeAbout'  wire:click='storeAbout' id="btnStore" class="inline-flex sm:px-16 px-8 sm:py-2 py-1 rounded dark:hover:bg-newgray-900 dark:hover:border-gray-200 dark:hover:text-gray-200 hover:bg-white hover:text-newgray-900 border hover:border-newgray-900 bg-newgray-900 dark:bg-gray-100 text-newgray-100 dark:text-newgray-900">
                     Save

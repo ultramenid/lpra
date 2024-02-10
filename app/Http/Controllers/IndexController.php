@@ -9,25 +9,18 @@ use Illuminate\Support\Facades\DB;
 class IndexController extends Controller
 {
 
-    public function getLPRA(){
-        $jumlah=  DB::table('csvmaster')
-        ->selectRaw('provinsi, count(desa_kel) as lpra')
-        ->groupBy('provinsi')
-        ->get();
 
-        $data = array();
-        foreach($jumlah as $item){
-            $data[$item->provinsi] = $item->lpra;
-        }
-        // dd($data);
-        return json_encode($data);
-    }
 
-    public function index(){
-        $data = $this->getLPRA();
+
+
+
+    public function index($klaim){
+        // dd($klaim);
+        $options = ['Kawasan Hutan','Kebun / APL Lainnya'];
+        $klaim = $klaim;
         $nav = 'index';
         $title = 'Lokasi Prioritas Reforma Agraria';
-        return view('frontends.index', compact('title','nav','data'));
+        return view('frontends.index', compact('title','nav', 'klaim', 'options'));
     }
 
     public function getUpdates(){
