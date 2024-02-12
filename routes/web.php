@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\IsiprofileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingsController;
@@ -54,6 +55,13 @@ Route::group(['middleware' => 'checkSession'], function () {
     Route::get('/cms/advokasi', [AboutController::class, 'advokasi']);
     Route::get('/cms/carakerja', [AboutController::class, 'carakerja']);
     Route::get('/cms/database', [AboutController::class, 'database']);
+
+    Route::get('/cms/sejarahkonflik', [IsiprofileController::class, 'sejarahkonflik'])->name('sejarahkonflik');
+    Route::get('/cms/sejarahpenguasaan', [IsiprofileController::class, 'sejarahpenguasaan'])->name('sejarahpenguasaan');
+    Route::get('/cms/upayamasyarakat', [IsiprofileController::class, 'upayamasyarakat'])->name('upayamasyarakat');
+    Route::get('/cms/analisishukum', [IsiprofileController::class, 'analisishukum'])->name('analisishukum');
+    Route::get('/cms/kesimpulan', [IsiprofileController::class, 'kesimpulan'])->name('kesimpulan');
+    Route::get('/cms/rekomendasi', [IsiprofileController::class, 'rekomendasi'])->name('rekomendasi');
 
     Route::get('/cms/editprofile/{id}', [ProfileController::class, 'editprofile']);
     Route::get('/cms/editupdates/{id}', [UpdatesController::class, 'editupdates']);

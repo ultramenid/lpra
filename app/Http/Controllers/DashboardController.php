@@ -10,26 +10,26 @@ class DashboardController extends Controller
 {
 
     public function getSejarahKonflik(){
-        return DB::table('profilelpra')->whereRaw('LENGTH(sejarahhgu) <= 8')->count();
+        return DB::table('profilelpra')->whereRaw('CHAR_LENGTH(sejarahhgu) >= 9')->count();
     }
 
     public function getSejarahPenguasaan(){
-        return DB::table('profilelpra')->whereRaw('LENGTH(sejarahpenguasaan) <= 8')->count();
+        return DB::table('profilelpra')->whereRaw('CHAR_LENGTH(sejarahpenguasaan) >= 9')->count();
     }
 
     public function getUpayaMasyarakat(){
-        return DB::table('profilelpra')->whereRaw('LENGTH(upayamasyarakat) <= 8')->count();
+        return DB::table('profilelpra')->whereRaw('CHAR_LENGTH(upayamasyarakat) >= 9')->count();
     }
 
     public function getAnalisisHukum(){
-        return DB::table('profilelpra')->whereRaw('LENGTH(analisishukum) <= 8')->count();
+        return DB::table('profilelpra')->whereRaw('CHAR_LENGTH(analisishukum) >= 9')->count();
     }
     public function getKesimpulan(){
-        return DB::table('profilelpra')->whereRaw('LENGTH(kesimpulan) <= 8')->count();
+        return DB::table('profilelpra')->whereRaw('CHAR_LENGTH(kesimpulan) >= 9')->count();
     }
 
     public function getRekomendasi(){
-        return DB::table('profilelpra')->whereRaw('LENGTH(Rekomendasi) <= 8')->count();
+        return DB::table('profilelpra')->whereRaw('CHAR_LENGTH(Rekomendasi) >= 9')->count();
 
     }
     public function getTotalLPRA(){
@@ -37,37 +37,21 @@ class DashboardController extends Controller
     }
 
     public function getTotalfromSHP(){
-        try {
-            $req = Http::get('http://129.150.48.143:8080/geoserver/simontini/wfs',
+        $req = Http::get('https://aws.simontini.id/geoserver/wfs',
             [
                 'service' => 'wfs',
-                'version' => '1.1.1',
+                'version' => '2.0.0',
                 'request' => 'GetFeature',
-                'typename' => 'simontini:Kecamatan_IDN',
-                'propertyName' => 'provinsi',
-                'cql_filter' => "provinsi LIKE '%". strtoupper($this->chooseprovinsi) ."%'",
-                'outputFormat' => 'application/json',
+                'typename' => 'kpa:20231203_LPRA_0107_point',
+                'outputFormat' => 'application/json'
             ]);
             $response = json_decode($req, true);
-            // $arrUnique = array_unique($response['features'][0]['properties']['provinsi']);
-
-            $res = array();
-            foreach ($response['features'] as $each) {
-                if (isset($res[$each['properties']['provinsi']]))
-                    array_push($res[$each['properties']['provinsi']], $each['properties']['provinsi']);
-                else
-                    $res[$each['properties']['provinsi']] = array($each['properties']['provinsi']);
-                }
-            return array_slice($res, 0, 10);
-        } catch (\Throwable $th) {
-            return [];
-        }
-
-
+        // dd($response);
+        return $response['totalFeatures'];
 
     }
     public function index(){
-        // dd($this->getTotal());
+        // dd($this->getTotalfromSHP());
         $sejarahhgu = $this->getSejarahKonflik();
         $sejarahpenguasaan = $this->getSejarahPenguasaan();
         $upayamasyarakat = $this->getUpayaMasyarakat();
@@ -75,6 +59,7 @@ class DashboardController extends Controller
         $kesimpulan = $this->getKesimpulan();
         $rekomendasi = $this->getRekomendasi();
         $totalprofile = $this->getTotalLPRA();
+        $totalprofileFromSHP = $this->getTotalfromSHP();
         $title = 'Dashboard';
         $nav = 'dashboard';
         return view('backends.dashboard', compact(
@@ -86,7 +71,8 @@ class DashboardController extends Controller
         'analisishukum',
         'kesimpulan',
         'rekomendasi',
-        'totalprofile'
+        'totalprofile',
+        'totalprofileFromSHP'
     ));
     }
 }
