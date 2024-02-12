@@ -46,13 +46,14 @@ class StatistikComponent extends Component
             $hutan =  DB::table('csvmaster')
             ->where('status', $this->status)
             ->count('desa_kel');
-            if($this->emitData == 'kosong'){
-                $hutan =  DB::table('csvmaster')
-                ->where('status', $this->status)
-                ->count('desa_kel');
-            }else{
+            if($this->emitData){
                 $hutan =  DB::table('csvmaster')
                 ->where('tipologi', $this->emitData)
+                ->where('status', $this->status)
+                ->count('desa_kel');
+
+            }else{
+                $hutan =  DB::table('csvmaster')
                 ->where('status', $this->status)
                 ->count('desa_kel');
             }
@@ -71,17 +72,18 @@ class StatistikComponent extends Component
             ->groupBy('region')
             ->get();
 
-            if($this->emitData == 'kosong'){
+            if($this->emitData){
                 $jumlah=  DB::table('csvmaster')
                 ->selectRaw('count(status) as status, region')
+                ->where('tipologi', $this->emitData)
                 ->where('status', $this->status)
                 ->groupBy('region')
                 ->get();
 
+
             }else{
                 $jumlah=  DB::table('csvmaster')
                 ->selectRaw('count(status) as status, region')
-                ->where('tipologi', $this->emitData)
                 ->where('status', $this->status)
                 ->groupBy('region')
                 ->get();
@@ -113,9 +115,10 @@ class StatistikComponent extends Component
 
             // dd($jumlah);
 
-            if($this->emitData == 'kosong'){
+            if($this->emitData){
                 $jumlah =  DB::table('csvmaster')
                 ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
+                ->where('tipologi', $this->emitData)
                 ->where('status', $this->status)
                 ->orderBy('totaltipologi')
                 ->groupBy('tipologi')->get();
@@ -123,7 +126,6 @@ class StatistikComponent extends Component
             }else{
                 $jumlah =  DB::table('csvmaster')
                 ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
-                ->where('tipologi', $this->emitData)
                 ->where('status', $this->status)
                 ->orderBy('totaltipologi')
                 ->groupBy('tipologi')->get();
