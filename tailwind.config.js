@@ -33,7 +33,7 @@ module.exports = {
                   },
             },
             fontFamily: {
-            'sans': ['Oswald', ...defaultTheme.fontFamily.sans],
+            'sans': ['Noto', ...defaultTheme.fontFamily.sans],
             'backend': ['Inconsolata'],
             },
             typography: {

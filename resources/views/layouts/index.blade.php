@@ -24,7 +24,7 @@
 
 </head>
 
-<body class="font-backend selection-bg">
+<body class="font-sans selection-bg">
 
     @yield('content')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
