@@ -50,17 +50,9 @@ class StatistikComponent extends Component
                 $hutan =  DB::table('csvmaster')
                 ->where('status', $this->status)
                 ->count('desa_kel');
-            }
-            return $hutan;
-        }elseif($this->status && $this->emitData){
-
-            $hutan =  DB::table('csvmaster')
-            ->where('tipologi', $this->emitData)
-            ->where('status', $this->status)
-            ->count('desa_kel');
-
-            if($this->emitData == 'kosong'){
+            }else{
                 $hutan =  DB::table('csvmaster')
+                ->where('tipologi', $this->emitData)
                 ->where('status', $this->status)
                 ->count('desa_kel');
             }
@@ -86,22 +78,13 @@ class StatistikComponent extends Component
                 ->groupBy('region')
                 ->get();
 
-            }
-        }elseif($this->status && $this->emitData){
-            $jumlah=  DB::table('csvmaster')
-            ->selectRaw('count(status) as status, region')
-            ->where('tipologi', $this->emitData)
-            ->where('status', $this->status)
-            ->groupBy('region')
-            ->get();
-
-            if($this->emitData == 'kosong'){
+            }else{
                 $jumlah=  DB::table('csvmaster')
                 ->selectRaw('count(status) as status, region')
+                ->where('tipologi', $this->emitData)
                 ->where('status', $this->status)
                 ->groupBy('region')
                 ->get();
-
             }
         }else{
             $jumlah=  DB::table('csvmaster')
@@ -137,24 +120,13 @@ class StatistikComponent extends Component
                 ->orderBy('totaltipologi')
                 ->groupBy('tipologi')->get();
 
-            }
-        }elseif($this->status && $this->emitData){
-            $jumlah =  DB::table('csvmaster')
-            ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
-            ->where('tipologi', $this->emitData)
-            ->where('status', $this->status)
-            ->orderBy('totaltipologi')
-            ->groupBy('tipologi')->get();
-
-            // dd($jumlah);
-
-            if($this->emitData == 'kosong'){
+            }else{
                 $jumlah =  DB::table('csvmaster')
                 ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
+                ->where('tipologi', $this->emitData)
                 ->where('status', $this->status)
                 ->orderBy('totaltipologi')
                 ->groupBy('tipologi')->get();
-
             }
         }else{
             $jumlah =  DB::table('csvmaster')
