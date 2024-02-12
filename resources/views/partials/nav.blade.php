@@ -12,16 +12,16 @@
                 <a href="{{ route('beranda') }}" class="text-white font-semibold sm:text-base text-xs">beranda</a>
             </div>
             <div class="px-4 py-2  @if($nav == 'about') border-b-4 border-white  rounded @endif">
-                <a href="{{ route('about') }}" class="text-white font-semibold sm:text-base text-xs">about</a>
+                <a href="{{ route('about') }}" class="text-white font-semibold sm:text-base text-xs">tentang</a>
             </div>
             <div class="px-4 py-2  @if($nav == 'index') border-b-4 border-white  rounded @endif">
                 <a href="{{ route('index', ['status'=>'all']) }}" class=" text-white font-bold sm:text-base text-xs">map</a>
             </div>
             <div class="px-4 py-2  @if($nav == 'profile') border-b-4 border-white  rounded @endif">
-                <a href="{{ route('profile') }}" class="text-white font-semibold sm:text-base text-xs">profile</a>
+                <a href="{{ route('profile') }}" class="text-white font-semibold sm:text-base text-xs">profil</a>
             </div>
             <div class="px-4 py-2  @if($nav == 'updates') border-b-4 border-white  rounded @endif">
-                <a href="{{ route('updates') }}" class="text-white font-semibold sm:text-base text-xs">updates</a>
+                <a href="{{ route('updates') }}" class="text-white font-semibold sm:text-base text-xs">informasi</a>
             </div>
         </div>
     </div>
