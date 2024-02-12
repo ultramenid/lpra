@@ -28,7 +28,7 @@ class StatistikComponent extends Component
 
     }
     public function testdd($data, $status){
-        // dd($status);
+        // dd($data);
         $this->emitData = $data;
         if($status == 'Kawasan Hutan'){
             $this->status = 'hutan';
@@ -46,13 +46,13 @@ class StatistikComponent extends Component
             $hutan =  DB::table('csvmaster')
             ->where('status', $this->status)
             ->count('desa_kel');
-            if($this->emitData){
+            if($this->emitData != 'kosong'){
                 $hutan =  DB::table('csvmaster')
                 ->where('tipologi', $this->emitData)
                 ->where('status', $this->status)
                 ->count('desa_kel');
 
-            }else{
+            }elseif($this->emitData == 'kosong'){
                 $hutan =  DB::table('csvmaster')
                 ->where('status', $this->status)
                 ->count('desa_kel');
@@ -65,6 +65,7 @@ class StatistikComponent extends Component
     }
 
     public function lpraRegion(){
+
         if($this->status ){
             $jumlah=  DB::table('csvmaster')
             ->selectRaw('count(status) as status, region')
@@ -72,7 +73,7 @@ class StatistikComponent extends Component
             ->groupBy('region')
             ->get();
 
-            if($this->emitData){
+            if($this->emitData != 'kosong'){
                 $jumlah=  DB::table('csvmaster')
                 ->selectRaw('count(status) as status, region')
                 ->where('tipologi', $this->emitData)
@@ -80,8 +81,7 @@ class StatistikComponent extends Component
                 ->groupBy('region')
                 ->get();
 
-
-            }else{
+            }elseif($this->emitData == 'kosong'){
                 $jumlah=  DB::table('csvmaster')
                 ->selectRaw('count(status) as status, region')
                 ->where('status', $this->status)
@@ -115,7 +115,7 @@ class StatistikComponent extends Component
 
             // dd($jumlah);
 
-            if($this->emitData){
+            if($this->emitData != 'kosong'){
                 $jumlah =  DB::table('csvmaster')
                 ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
                 ->where('tipologi', $this->emitData)
@@ -123,7 +123,7 @@ class StatistikComponent extends Component
                 ->orderBy('totaltipologi')
                 ->groupBy('tipologi')->get();
 
-            }else{
+            }elseif($this->emitData == 'kosong'){
                 $jumlah =  DB::table('csvmaster')
                 ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
                 ->where('status', $this->status)
