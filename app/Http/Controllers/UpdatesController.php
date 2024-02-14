@@ -24,28 +24,32 @@ class UpdatesController extends Controller
     public function getDetailUpdate($id, $slug){
         return DB::table('updates')->where('id', $id)->where('slug', $slug)->first();
     }
+    public function getDetailUpdateOthers($id, $slug){
+        return DB::table('updates')
+        ->whereNot('id',  $id)
+        ->where('is_active', 1)
+        ->where('publishdate', '<=', Carbon::now('Asia/Jakarta'))
+        ->inRandomOrder()
+        ->limit(3)
+        ->get();;
+    }
 
     public function detailUpdate($id, $slug){
+        // dd($this->getDetailUpdateOthers($id, $slug));
         if(!$this->getDetailUpdate($id, $slug)){ return redirect('/'); }
         $nav = 'updates';
         $title = $this->getDetailUpdate($id, $slug)->titleID;
         $data = $this->getDetailUpdate($id, $slug);
-        return view('frontends.detailupdate', compact('title','nav', 'data'));
+        $others = $this->getDetailUpdateOthers($id, $slug);
+        return view('frontends.detailupdate', compact('title','nav', 'data', 'others'));
     }
 
-    public function getUpdates(){
-        return DB::table('updates')
-        ->where('publishdate', '<=', Carbon::now('Asia/Jakarta'))
-        ->where('is_active', 1)
-        ->orderBy('publishdate','desc')
-        ->get();
-    }
+
     public function updates(){
         $title = 'Updates ';
         $nav = 'updates';
-        $updates = $this->getUpdates();
         // dd($this->getUpdates());
-        return view('frontends.updates', compact('title', 'nav', 'updates'));
+        return view('frontends.updates', compact('title', 'nav'));
     }
 
     public function index(){
