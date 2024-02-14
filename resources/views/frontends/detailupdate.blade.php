@@ -26,8 +26,8 @@
                         <a href="{{ url('update', [$item->id,$item->slug]) }}">
                             <img class="h-60 w-full object-cover object-center rounded" src="{{ asset('storage/photos/shares/'.$item->img) }}" alt="{{$item->titleID}}">
                         </a>
-                        <a href="{{ url('update', [$item->id,$item->slug]) }}" class="text-xl px-4">{{$item->titleID}}</a>
-                        <p class="font-light px-4 mb-12">{{$item->descID}}</p>
+                        <a href="{{ url('update', [$item->id,$item->slug]) }}" class="text-xl ">{{$item->titleID}}</a>
+                        <p class="font-light mb-12">{{$item->descID}}</p>
                     </div>
                 @endforeach
              </div>

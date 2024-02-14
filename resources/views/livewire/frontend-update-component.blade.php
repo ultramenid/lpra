@@ -15,9 +15,8 @@
             </div>
        </div>
         @endforeach
-
-        @if ($updates)
+     </div>
+     @if ($updates)
         {{ $updates->links('livewire.pagination') }}
         @endif
-     </div>
 </div>
