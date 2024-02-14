@@ -6,11 +6,10 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\IsiprofileController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RedistribusiController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UpdatesController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
-use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +28,8 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/profile', [ProfileController::class, 'list'])->name('profile');
 Route::get('/updates', [UpdatesController::class, 'updates'])->name('updates');
 Route::get('/profile/{fid}/{desa_kel}', [ProfileController::class, 'detailprofile']);
-Route::get('/update/{slug}', [UpdatesController::class, 'detailUpdate']);
+Route::get('/update/{id}/{slug}', [UpdatesController::class, 'detailUpdate']);
+Route::get('/redistribusi/{id}/{slug}', [RedistribusiController::class, 'detailRedistribusi']);
 
 
 Route::get('/service/lpra', [IndexController::class, 'getLPRA']);
@@ -55,6 +55,9 @@ Route::group(['middleware' => 'checkSession'], function () {
     Route::get('/cms/advokasi', [AboutController::class, 'advokasi']);
     Route::get('/cms/carakerja', [AboutController::class, 'carakerja']);
     Route::get('/cms/database', [AboutController::class, 'database']);
+    Route::get('/cms/redistribusi', [RedistribusiController::class, 'index']);
+    Route::get('/cms/addredistribusi', [RedistribusiController::class, 'addredis']);
+    Route::get('/cms/editredistribusi/{id}', [RedistribusiController::class, 'editredis']);
 
     Route::get('/cms/sejarahkonflik', [IsiprofileController::class, 'sejarahkonflik'])->name('sejarahkonflik');
     Route::get('/cms/sejarahpenguasaan', [IsiprofileController::class, 'sejarahpenguasaan'])->name('sejarahpenguasaan');

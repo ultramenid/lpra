@@ -65,10 +65,10 @@
                 @foreach ($updates as $item)
                     <!-- Slides -->
                     <div class="swiper-slide p-4 flex flex-col gap-4 bg-newgray-100" >
-                        <a href="{{ url('update', [$item->slug]) }}">
+                        <a href="{{ url('update', [$item->id,$item->slug]) }}">
                             <img class="h-60 w-full object-cover object-center rounded" src="{{ asset('storage/photos/shares/'.$item->img) }}" alt="{{$item->titleID}}">
                         </a>
-                        <a href="{{ url('update', [$item->slug]) }}" class="text-xl">{{$item->titleID}}</a>
+                        <a href="{{ url('update', [$item->id,$item->slug]) }}" class="text-xl">{{$item->titleID}}</a>
                         <p class="font-light">{{$item->descID}}</p>
                     </div>
                 @endforeach
@@ -104,14 +104,17 @@
             <h1 class="font-verybold md:text-3xl text-xl">Sudah Redistribusi</h1>
         </div>
         <div class="flex flex-row  scrollbar-hide overflow-x-scroll h-full sm:gap-0 gap-4   mt-6 snap-x snap-mandatory">
-           <!-- card -->
-           <div class="flex-shrink-0 snap-center sm:w-3/12 w-9/12 ">
-                <a href="#">
-                    <img  class=" sm:h-80 h-full " src="{{ asset('assets/redis1.jpeg') }}" alt="Auriga Nusantara">
-                </a>
-           </div>
+           @foreach ($redistribusi as $item )
+                <!-- card -->
+                <div class="flex-shrink-0 snap-center sm:w-3/12 w-9/12 ">
+                    <a href="{{ url('redistribusi', [$item->id,$item->slug]) }}">
+                        <img  class=" sm:h-80 h-full " src="{{ asset('storage/photos/shares/'.$item->img) }}" alt="Auriga Nusantara">
+                    </a>
+                </div>
+           @endforeach
 
-           <div class="flex-shrink-0 snap-center sm:w-3/12 w-9/12 ">
+
+           {{-- <div class="flex-shrink-0 snap-center sm:w-3/12 w-9/12 ">
                 <a href="#">
                     <img  class=" sm:h-80 h-full " src="{{ asset('assets/redis2.jpeg') }}" alt="Auriga Nusantara">
                 </a>
@@ -120,7 +123,7 @@
                 <a href="#">
                     <img  class=" sm:h-80 h-full " src="{{ asset('assets/redis3.jpeg') }}" alt="Auriga Nusantara">
                 </a>
-            </div>
+            </div> --}}
 
 
         </div>

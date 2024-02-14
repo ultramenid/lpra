@@ -26,6 +26,11 @@
                 </div>
             </div>
             @endif
+            @if(session('role_id') == 0)
+            <div class="hover:bg-gray-200 dark:hover:bg-newgray-700 py-3 px-2 rounded @if($nav == 'redistribusi' )border-b-2  dark:border-gray-300 border-newgray-900 @endif ">
+                <a href="{{url('/cms/redistribusi')}}" class=" px-0.5  @if($nav == 'redistribusi' )   text-newgray-900 dark:text-gray-300 @endif   hover:text-newgray-900 dark:hover:text-gray-300 cursor-pointer" >Redistribusi</a>
+            </div>
+            @endif
             <div class="hover:bg-gray-200 dark:hover:bg-newgray-700 py-3 px-2 rounded @if($nav == 'profiles' )border-b-2  dark:border-gray-300 border-newgray-900 @endif ">
                 <a href="{{url('/cms/profiles')}}" class=" px-0.5  @if($nav == 'profiles' )   text-newgray-900 dark:text-gray-300 @endif   hover:text-newgray-900 dark:hover:text-gray-300 cursor-pointer" >Profiles</a>
             </div>

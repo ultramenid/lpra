@@ -4,27 +4,17 @@ namespace App\Http\Livewire;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
-class EditUpdatesComponent extends Component
+class AddRedistribusiComponent extends Component
 {
     use WithFileUploads;
-    public $photo, $uphoto, $titleID, $descID, $contentID, $publishdate, $isactive = 0, $idupdates;
-
-    public function mount($id){
-        $this->idupdates = $id;
-        $data = DB::table('updates')->where('id', $id)->first();
-        $this->titleID = $data->titleID;
-        $this->uphoto = $data->img;
-        $this->contentID = $data->contentID;
-        $this->publishdate = $data->publishdate;
-        $this->isactive = $data->is_active;
-        $this->descID = $data->descID;
-
+    public $photo, $titleID, $descID, $pdffile, $publishdate, $isactive = 0;
+    public function render(){
+        return view('livewire.add-redistribusi-component');
     }
 
     public function updatedPhoto($photo){
@@ -35,6 +25,7 @@ class EditUpdatesComponent extends Component
            $type = 'error'; //error, success
            $this->emit('toast',$message, $type);
         }
+
     }
 
     public function uploadImage(){
@@ -52,44 +43,44 @@ class EditUpdatesComponent extends Component
 
     public function storeUpdates(){
         if($this->manualValidation()){
-            if(!$this->photo){
-                $name = $this->uphoto;
-            }else{
-                    Storage::delete('public/photos/shares/'.$this->uphoto);
-                    Storage::delete('public/photos/shares/thumbnail/'.$this->uphoto);
-                    $name=  $this->uploadImage();
-            }
-            DB::table('updates')->where('id', $this->idupdates)->update([
+            DB::table('redistribusi')->insert([
                 'publishdate' => $this->publishdate,
                 'titleID' => $this->titleID,
                 'descID' => $this->descID,
-                'contentID' => $this->contentID,
+                'file' => $this->uploadFile(),
                 'is_active' => $this->isactive,
-                'img' => $name,
-                'slug' => Str::slug($this->titleID) ,
-                'updated_at' => Carbon::now('Asia/Jakarta')
+                'img' => $this->uploadImage(),
+                'slug' => Str::slug($this->titleID),
+                'created_at' => Carbon::now('Asia/Jakarta')
             ]);
+            redirect()->to('/cms/redistribusi');
+        }
 
-             //passing to toast
-             $message = 'Successfully updating Updates';
-             $type = 'success'; //error, success
-             $this->emit('toast',$message, $type);
+
+    }
+    public function uploadFile(){
+        if($this->pdffile){
+            $file = $this->pdffile->store('public/files/lampiran');
+            $foto = $this->pdffile->hashName();
+            return $foto;
+        }else{
+            return null;
         }
     }
 
     public function manualValidation(){
         if($this->titleID == '' ){
-            $message = 'Title indonesia is required';
+            $message = 'Title  is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
         }elseif($this->descID == '' ){
-            $message = 'Description indonesia is required';
+            $message = 'Description  is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
-        }elseif($this->contentID == '' ){
-            $message = 'Content indonesia is required';
+        }elseif($this->pdffile == '' ){
+            $message = 'File  is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
@@ -100,9 +91,5 @@ class EditUpdatesComponent extends Component
             return;
         }
         return true;
-    }
-
-    public function render(){
-        return view('livewire.edit-updates-component');
     }
 }

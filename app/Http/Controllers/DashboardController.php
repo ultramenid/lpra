@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -36,6 +37,7 @@ class DashboardController extends Controller
         return DB::table('profilelpra')->count();
     }
 
+
     public function getTotalfromSHP(){
         $req = Http::get('https://aws.simontini.id/geoserver/wfs',
             [
@@ -51,7 +53,7 @@ class DashboardController extends Controller
 
     }
     public function index(){
-        // dd($this->getTotalfromSHP());
+        // dd($this->getRedistribusi());
         $sejarahhgu = $this->getSejarahKonflik();
         $sejarahpenguasaan = $this->getSejarahPenguasaan();
         $upayamasyarakat = $this->getUpayaMasyarakat();

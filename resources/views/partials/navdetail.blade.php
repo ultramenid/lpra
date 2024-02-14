@@ -7,7 +7,7 @@
         <div></div>
     </div>
     <div class=" w-full  bg-nav">
-        <div class="sm:max-w-7xl  mx-auto px-4 flex items-center sm:justify-center justify-between mt-6 ">
+        <div class="sm:max-w-7xl  mx-auto px-4 flex items-center sm:justify-center justify-between mt-6  overflow-x-auto scrollbar-hide">
             <div class="px-4 py-2 bg-nav @if($nav == 'beranda') border-b-4 border-black -mb-1  rounded @endif">
                 <a href="{{ route('beranda') }}" class="text-white font-semibold sm:text-base text-xs">beranda</a>
             </div>

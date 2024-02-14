@@ -12,7 +12,7 @@
 {{-- nav --}}
 <div class="border-t-1 border-newgray-400">
     <div class=" w-full py-2">
-        <div class="sm:max-w-7xl  mx-auto px-4 flex items-center sm:justify-center justify-between">
+        <div class="sm:max-w-7xl  mx-auto px-4 flex items-center sm:justify-center justify-between overflow-x-auto scrollbar-hide">
             <div class="sm:px-10 px-4 py-2  ">
                 <a href="{{ route('beranda') }}" class=" font-light">Beranda</a>
             </div>

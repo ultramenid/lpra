@@ -58,7 +58,7 @@ class AddupdateComponent extends Component
                 'contentID' => $this->contentID,
                 'is_active' => $this->isactive,
                 'img' => $this->uploadImage(),
-                'slug' => Str::slug($this->titleID,'-').'-'.Carbon::now('Asia/Jakarta')->format('d-m-y-h-i-s') ,
+                'slug' => Str::slug($this->titleID) ,
                 'created_at' => Carbon::now('Asia/Jakarta')
             ]);
             redirect()->to('/cms/updates');
@@ -69,17 +69,17 @@ class AddupdateComponent extends Component
 
     public function manualValidation(){
         if($this->titleID == '' ){
-            $message = 'Title indonesia is required';
+            $message = 'Title  is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
         }elseif($this->descID == '' ){
-            $message = 'Description indonesia is required';
+            $message = 'Description  is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;
         }elseif($this->contentID == '' ){
-            $message = 'Content indonesia is required';
+            $message = 'Content  is required';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
             return;

@@ -30,18 +30,29 @@ class IndexController extends Controller
 
     public function getUpdates(){
         return DB::table('updates')
-        ->where('publishdate', '<', Carbon::now('Asia/Jakarta'))
+        ->where('publishdate', '<=', Carbon::now('Asia/Jakarta'))
         ->where('is_active', 1)
         ->orderBy('publishdate','desc')
         ->limit(4)
         ->get();
 
     }
+    public function getRedistribusi(){
+        return DB::table('redistribusi')
+        ->select('img','file','slug', 'id')
+        ->where('publishdate', '<=' , Carbon::now('Asia/Jakarta'))
+        ->where('is_active', 1)
+        ->orderBy('publishdate')
+        ->limit(4)
+        ->get();
+    }
+
     public function beranda(){
         // dd($this->getUpdates());
         $nav = 'beranda';
+        $redistribusi = $this->getRedistribusi();
         $title = 'Beranda - Lokasi Prioritas Reforma Agraria';
         $updates = $this->getUpdates();
-        return view('frontends.beranda', compact('title', 'nav', 'updates'));
+        return view('frontends.beranda', compact('title', 'nav', 'updates', 'redistribusi'));
     }
 }

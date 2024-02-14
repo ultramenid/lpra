@@ -7,7 +7,7 @@
         <div></div>
     </div>
     <div class=" w-full ">
-        <div class="sm:max-w-7xl  mx-auto px-4 flex items-center sm:justify-center justify-between ">
+        <div class="sm:max-w-7xl  mx-auto px-4 flex items-center sm:justify-center justify-between overflow-x-auto scrollbar-hide ">
             <div class="px-4 py-2  @if($nav == 'beranda') border-b-4 border-white  rounded @endif">
                 <a href="{{ route('beranda') }}" class="text-white font-semibold sm:text-base text-xs">beranda</a>
             </div>

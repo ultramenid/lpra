@@ -15,7 +15,7 @@
                 src="{{ asset('storage/photos/shares/'.$item->img) }}"
                 alt="">
 
-                <a href="{{ url('update', [$item->slug]) }}" class="md:mt-6 mt-3 md:text-3xl text-xl font-bold ">{{$item->titleID}}
+                <a href="{{ url('update', [$item->id ,$item->slug]) }}" class="md:mt-6 mt-3 md:text-3xl text-xl font-bold ">{{$item->titleID}}
                 </a>
                 <div class="md:mt-6 mt-3 ">
                     <a class="font-bold">{{ \Carbon\Carbon::parse($item->publishdate)->format('d F Y')}}</a><span> | </span><a>{{$item->descID}}</a>

@@ -21,15 +21,15 @@ class UpdatesController extends Controller
         return view('backends.editupdates', compact('title', 'nav', 'id'));
     }
 
-    public function getDetailUpdate($slug){
-        return DB::table('updates')->where('slug', $slug)->first();
+    public function getDetailUpdate($id, $slug){
+        return DB::table('updates')->where('id', $id)->where('slug', $slug)->first();
     }
 
-    public function detailUpdate($slug){
-        if(!$this->getDetailUpdate($slug)){ return redirect('/'); }
+    public function detailUpdate($id, $slug){
+        if(!$this->getDetailUpdate($id, $slug)){ return redirect('/'); }
         $nav = 'updates';
-        $title = $this->getDetailUpdate($slug)->titleID;
-        $data = $this->getDetailUpdate($slug);
+        $title = $this->getDetailUpdate($id, $slug)->titleID;
+        $data = $this->getDetailUpdate($id, $slug);
         return view('frontends.detailupdate', compact('title','nav', 'data'));
     }
 
