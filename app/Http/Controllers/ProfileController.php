@@ -18,8 +18,9 @@ class ProfileController extends Controller
         return DB::table('profilelpra')->where('fid', $fid)->first();
     }
 
-    public function detailprofile($slug, $desa_kel){
-        if(!$this->getDetailProfile($slug)){ return redirect('/'); }
+    public function detailprofile($slug){
+        // dd($this->getDetailProfile($slug));
+        if(!$this->getDetailProfile($slug)){ return abort(404); }
         $nav = 'profiles';
         $title = 'LPRA '.$this->getDetailProfile($slug)->desa_kel ;
         $data = $this->getDetailProfile($slug);

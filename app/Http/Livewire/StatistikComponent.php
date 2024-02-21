@@ -24,9 +24,6 @@ class StatistikComponent extends Component
         // dd($this->status);
     }
 
-    public function query(){
-
-    }
     public function testdd($data, $status){
         // dd($data);
         $this->emitData = $data;
@@ -46,7 +43,7 @@ class StatistikComponent extends Component
             $hutan =  DB::table('csvmaster')
             ->where('status', $this->status)
             ->count('desa_kel');
-            if($this->emitData != 'kosong'){
+            if($this->emitData != 'kosong' && $this->emitData){
                 $hutan =  DB::table('csvmaster')
                 ->where('tipologi', $this->emitData)
                 ->where('status', $this->status)
@@ -73,7 +70,7 @@ class StatistikComponent extends Component
             ->groupBy('region')
             ->get();
 
-            if($this->emitData != 'kosong'){
+            if($this->emitData != 'kosong' && $this->emitData){
                 $jumlah=  DB::table('csvmaster')
                 ->selectRaw('count(status) as status, region')
                 ->where('tipologi', $this->emitData)
@@ -96,6 +93,7 @@ class StatistikComponent extends Component
 
         }
 
+
         foreach($jumlah as $item){
             $data['region'][] = $item->region;
             $data['jumlahlpra'][] = $item->status;
@@ -115,7 +113,7 @@ class StatistikComponent extends Component
 
             // dd($jumlah);
 
-            if($this->emitData != 'kosong'){
+            if($this->emitData != 'kosong' && $this->emitData){
                 $jumlah =  DB::table('csvmaster')
                 ->selectRaw('tipologi, sum(luas_ha) as totaltipologi')
                 ->where('tipologi', $this->emitData)

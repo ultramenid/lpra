@@ -25,11 +25,6 @@ var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     maxNativeZoom: 17
 });
 
-var forestADM = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-        layers: '	simontini:Forest_estate_adm',
-        transparent: true,
-        format: 'image/png'
-})
 
 var hgu = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
         layers: 'kpa:HGU_BPN_2019',
@@ -48,6 +43,65 @@ var poly = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
     transparent: true,
     format: 'image/png'
 }).addTo(map);
+
+var forestADM = L.tileLayer.betterWms('https://aws.simontini.id/geoserver/wms', {
+        layers: '	simontini:Forest_estate_adm',
+        transparent: true,
+        format: 'image/png'
+})
+
+$(document).ready(function () {
+
+// checkbox section
+    $('#kawasanhutan:checkbox').on('change', function() {
+        var checkbox = $(this);
+        // toggle the layer
+        if ($(checkbox).is(':checked')) {
+            document.getElementById("legendKawasanhutan").style.display = "block";
+            document.getElementById("map").style.cursor = "pointer";
+            map.addLayer(forestADM)
+        } else {
+            document.getElementById("legendKawasanhutan").style.display = "none";
+            document.getElementById("map").style.cursor = "auto";
+
+            map.removeLayer(forestADM)
+        }
+    });
+    $('#HGU:checkbox').on('change', function() {
+        var checkbox = $(this);
+        // toggle the layer
+        if ($(checkbox).is(':checked')) {
+            document.getElementById("legendHGU").style.display = "block";
+            map.addLayer(hgu)
+        } else {
+            document.getElementById("legendHGU").style.display = "none";
+            map.removeLayer(hgu)
+        }
+    });
+    $('#PBPH:checkbox').on('change', function() {
+        var checkbox = $(this);
+        // toggle the layer
+        if ($(checkbox).is(':checked')) {
+            document.getElementById("legendPBPH").style.display = "block";
+            map.addLayer(IUPHHK_adm)
+        } else {
+            document.getElementById("legendPBPH").style.display = "none";
+            map.removeLayer(IUPHHK_adm)
+        }
+    });
+
+    $('#LPRA:checkbox').on('change', function() {
+        var checkbox = $(this);
+        // toggle the layer
+        if ($(checkbox).is(':checked')) {
+            document.getElementById("legendLPRA").style.display = "block";
+            map.addLayer(poly)
+        } else {
+            document.getElementById("legendLPRA").style.display = "none";
+            map.removeLayer(poly)
+        }
+    });
+});
 
 
 var baseLayers = {
@@ -228,7 +282,7 @@ const popupContent = function(data){
                     '<a style="color:black" class="font-semibold">Lokasi: </a> <a style="color:black">Desa '+data.desa_kel.toProperCase()+', Kec '+data.kab_kota.toProperCase()+', Kab/Kota '+data.kec.toProperCase()+',  '+data.provinsi.toProperCase()+'.</a>'+
                 '</div>'+
                 '<div class="flex space-x-2">'+
-                    '<a style="color:black" class="font-semibold">Profil: </a> <a href="profile/'+data.orig_fid+'/'+data.desa_kel+'" style="color: red">Lebih detail.</a>'+
+                    '<a style="color:black" class="font-semibold">Profil: </a> <a href="profile/'+data.orig_fid+'" style="color: red">Lebih detail.</a>'+
                 '</div>'+
                 '</div>'+
             '</div>'
@@ -652,3 +706,4 @@ function resetLayer(){
 //    };
 
 //    legend.addTo(map);
+

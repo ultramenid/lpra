@@ -145,79 +145,147 @@
                 </div>
             </div>
 
-            <h1 class="mt-12 mb-2 text-xl  font-bold">Legend</h1>
-            <div class="border-b border-gray-300 py-2" x-data=" {open:true}">
-                <div  class=" flex items-center">
-
-                    <div class=" flex justify-between w-full items-center cursor-pointer" @click="open=!open ">
-                        <label  class="w-full ml-1 text-xs font-medium text-gray-500">Kawasan Hutan</label>
-                        <div>
-                            <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-0': open, 'rotate-180': !open}" class="inline w-4 h-4 items-center mt-1 ml-1 transition-transform duration-200 transform "><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            {{-- checkbox --}}
+            <h1 class="mt-12 mb-2 text-xl  font-bold">Layer</h1>
+            <div class="mt-4 mb-2" >
+                <div class="flex gap-2">
+                    <label for="LPRA" class="flex  cursor-pointer select-none text-dark dark:text-white" >
+                        <div class="relative">
+                            <input type="checkbox" id="LPRA" class="peer sr-only" checked/>
+                            <div class="block h-5 rounded-full  bg-gray-200 w-9 peer-checked:bg-about" ></div>
+                            <div class="absolute w-[13px] h-[13px] transition bg-white rounded-full  left-1 bottom-1 top-[3.5px] peer-checked:translate-x-full peer-checked:bg-white "></div>
+                        </div>
+                    </label>
+                    <a class="text-sm">Lokasi Prioritas Reforma Agraria (LPRA)</a>
+                   </div>
+                <div id="legendLPRA" class="border-b border-gray-300 pb-4" style="display: block !important;" class="">
+                    <div class="pl-5 " >
+                        <div class="flex items-center rounded mt-2">
+                            <div class="w-6 h-5 ml-2 border-2 " style="border-color: #FFA500"></div>
+                            <label for="asetpemerintahdaerah" class="w-full ml-1 text-sm font-medium text-gray-500">Hutan Konservasi</label>
                         </div>
                     </div>
-
                 </div>
-                <div class="pl-5 " x-show="open" style="display: none !important;">
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color: #ad40ff"></div>
-                        <label for="asetpemerintahdaerah" class="w-full ml-1 text-xs font-medium text-gray-500">Hutan Konservasi</label>
-                    </div>
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color: #01ad00"></div>
-                        <label for="klaimhutanperhutani" class="w-full ml-1 text-xs font-medium text-gray-500">Hutan Lindung</label>
-                    </div>
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color: #ff5eff"></div>
-                        <label for="konsesihutanproduksi" class="w-full ml-1 text-xs font-medium text-gray-500">Hutan Produksi Konversi</label>
-                    </div>
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color: #8af200"></div>
-                        <label for="penetapanhutanlindung" class="w-full ml-1 text-xs font-medium text-gray-500">Hutan Produksi Terbatas</label>
-                    </div>
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color:  #ffff00"></div>
-                        <label for="penetapanhutanproduksi" class="w-full ml-1 text-xs font-medium text-gray-500">Hutan Produksi Tetap</label>
-                    </div>
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color:  #0000ff"></div>
-                        <label for="zonaotoritapariwisata" class="w-full ml-1 text-xs font-medium text-gray-500">Air/Danau/Laut</label>
-                    </div>
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color:  #fef9f1"></div>
-                        <label for="pelepasankawasanhutan" class="w-full ml-1 text-xs font-medium text-gray-500">Areal Penggunaan Lain</label>
+            </div>
+            <div class="mt-1 mb-2" >
+                <div class="flex gap-2">
+                    <label for="kawasanhutan" class="flex  cursor-pointer select-none text-dark dark:text-white" >
+                        <div class="relative">
+                            <input type="checkbox" id="kawasanhutan" class="peer sr-only" />
+                            <div class="block h-5 rounded-full  bg-gray-200 w-9 peer-checked:bg-about" ></div>
+                            <div class="absolute w-[13px] h-[13px] transition bg-white rounded-full  left-1 bottom-1 top-[3.5px] peer-checked:translate-x-full peer-checked:bg-white "></div>
+                        </div>
+                    </label>
+                    <a class="text-sm">Kawasan Hutan</a>
+                   </div>
+                <div id="legendKawasanhutan" class="border-b border-gray-300 pb-4" style="display: none !important;" class="">
+                    <div class="pl-5 " >
+                        <div class="flex  rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color: #ad40ff"></div>
+                            <label for="asetpemerintahdaerah" class="w-full ml-1 text-sm font-medium text-gray-500">Hutan Konservasi</label>
+                        </div>
+                        <div class="flex  rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color: #01ad00"></div>
+                            <label for="klaimhutanperhutani" class="w-full ml-1 text-sm font-medium text-gray-500">Hutan Lindung</label>
+                        </div>
+                        <div class="flex  rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color: #ff5eff"></div>
+                            <label for="konsesihutanproduksi" class="w-full ml-1 text-sm font-medium text-gray-500">Hutan Produksi Konversi</label>
+                        </div>
+                        <div class="flex  rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color: #8af200"></div>
+                            <label for="penetapanhutanlindung" class="w-full ml-1 text-sm font-medium text-gray-500">Hutan Produksi Terbatas</label>
+                        </div>
+                        <div class="flex  rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color:  #ffff00"></div>
+                            <label for="penetapanhutanproduksi" class="w-full ml-1 text-sm font-medium text-gray-500">Hutan Produksi Tetap</label>
+                        </div>
+                        <div class="flex  rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color:  #0000ff"></div>
+                            <label for="zonaotoritapariwisata" class="w-full ml-1 text-sm font-medium text-gray-500">Air/Danau/Laut</label>
+                        </div>
+                        <div class="flex  rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color:  #fef9f1"></div>
+                            <label for="pelepasankawasanhutan" class="w-full ml-1 text-sm font-medium text-gray-500">Areal Penggunaan Lain</label>
+                        </div>
                     </div>
                 </div>
             </div>
 
+            <div class="mt-1 mb-2" >
+                <div class="flex gap-2">
+                    <label for="HGU" class="flex  cursor-pointer select-none text-dark dark:text-white" >
+                        <div class="relative">
+                            <input type="checkbox" id="HGU" class="peer sr-only" />
+                            <div class="block h-5 rounded-full  bg-gray-200 w-9 peer-checked:bg-about" ></div>
+                            <div class="absolute w-[13px] h-[13px] transition bg-white rounded-full  left-1 bottom-1 top-[3.5px] peer-checked:translate-x-full peer-checked:bg-white "></div>
+                        </div>
+                    </label>
+                    <a class="text-sm">Hak Guna Usaha (HGU)</a>
+                   </div>
+                <div id="legendHGU" class="border-b border-gray-300 pb-4" style="display: none !important;">
+                    <div class="pl-5 " >
+                        <div class="flex items-center rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color: #3C7A89"></div>
+                            <label for="asetpemerintahdaerah" class="w-full ml-1 text-sm font-medium text-gray-500">HGU</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-1 mb-2" >
+
+                <div class="flex gap-2">
+                    <label for="PBPH" class="flex  cursor-pointer select-none text-dark dark:text-white" >
+                        <div class="relative">
+                            <input type="checkbox" id="PBPH" class="peer sr-only" />
+                            <div class="block h-5 rounded-full  bg-gray-200 w-9 peer-checked:bg-about" ></div>
+                            <div class="absolute w-[13px] h-[13px] transition bg-white rounded-full  left-1 bottom-1 top-[3.5px] peer-checked:translate-x-full peer-checked:bg-white "></div>
+                        </div>
+                    </label>
+                    <a class="text-sm">Perizinan Berusaha Pemanfaatan Hutan (PBPH)</a>
+                   </div>
+
+                <div id="legendPBPH" class="border-b border-gray-300 pb-4" style="display: none !important;">
+                    <div class="pl-5 " >
+                        <div class="flex items-center rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color: #BA2D0B"></div>
+                            <label for="klaimhutanperhutani" class="w-full ml-1 text-sm font-medium text-gray-500">PBPH-HT</label>
+                        </div>
+                        <div class="flex items-center rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color: #B0A084"></div>
+                            <label for="konsesihutanproduksi" class="w-full ml-1 text-sm font-medium text-gray-500">PBPH-HA</label>
+                        </div>
+                        <div class="flex items-center rounded mt-2">
+                            <div class="w-4 h-3 ml-2" style="background-color: #16DB65"></div>
+                            <label for="penetapanhutanlindung" class="w-full ml-1 text-sm font-medium text-gray-500">PBPH-RE</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <h1 class="mt-12 mb-2 text-xl  font-bold">Legend</h1>
+
             <div class="border-b border-gray-300 py-2" x-data=" {open:true}">
                 <div  class=" flex items-center">
 
-                    <div class=" flex justify-between w-full items-center cursor-pointer" @click="open=!open ">
-                        <label  class="w-full ml-1 text-xs font-medium text-gray-500">Izin / Hak Atas Tanah</label>
-                        <div>
+                    <div class=" flex justify-between w-full items-center cursor-pointer" >
+                        <label  class="w-full ml-1 text-sm  font-medium text-gray-500">Status / Klaim</label>
+                        {{-- <div>
                             <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-0': open, 'rotate-180': !open}" class="inline w-4 h-4 items-center mt-1 ml-1 transition-transform duration-200 transform "><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </div>
+                        </div> --}}
                     </div>
 
                 </div>
                 <div class="pl-5 " x-show="open" style="display: none !important;">
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color: #3C7A89"></div>
-                        <label for="asetpemerintahdaerah" class="w-full ml-1 text-xs font-medium text-gray-500">HGU</label>
+                    <div class="flex items-center  mt-2">
+                        <div class="w-[23px] h-5 ml-2 rounded-full  border-2" style="border-color: #16DB65"></div>
+                        <label for="penetapanhutanlindung" class="w-full ml-1 text-sm  text-gray-500">Kawasan Hutan</label>
                     </div>
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color: #BA2D0B"></div>
-                        <label for="klaimhutanperhutani" class="w-full ml-1 text-xs font-medium text-gray-500">PBPH-HT</label>
+                    <div class="flex items-center  mt-2">
+                        <div class="w-[23px] h-5 ml-2 rounded-full border-2" style="border-color: #960200"></div>
+                        <label for="penetapanhutanlindung" class="w-full ml-1 text-sm  text-gray-500">Kebun / APL Lainnya</label>
                     </div>
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color: #B0A084"></div>
-                        <label for="konsesihutanproduksi" class="w-full ml-1 text-xs font-medium text-gray-500">PBPH-HA</label>
-                    </div>
-                    <div class="flex items-center rounded mt-2">
-                        <div class="w-4 h-3 ml-2" style="background-color: #16DB65"></div>
-                        <label for="penetapanhutanlindung" class="w-full ml-1 text-xs font-medium text-gray-500">PBPH-RE</label>
-                    </div>
-
                 </div>
             </div>
 
@@ -236,6 +304,7 @@
 
 @push('scripts')
     <script>
+
         var data = '<?php echo $klaim  ?>';
         console.log(data)
     </script>

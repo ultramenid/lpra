@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .bg-about{
+        background-color: #5F4012;
+    }
+}
 .info {
     padding: 6px 8px;
     font: 14px/16px Inconsolata, Helvetica, sans-serif;
@@ -78,10 +83,6 @@
 
 .bg-kebun {
     background-color: #960200;
-}
-
-.bg-about{
-    background-color: #5F4012;
 }
 
 .leaflet-popup-content{

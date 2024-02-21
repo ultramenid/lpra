@@ -20,6 +20,9 @@
     <script src="https://unpkg.com/leaflet-gesture-handling"></script>
     <script src="{{ asset('js/provinsi.js') }}"  ></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{ asset('js/betterWMS.js') }}"  ></script>
+
 
 
 </head>
@@ -27,7 +30,6 @@
 <body class="font-sans selection-bg">
 
     @yield('content')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ asset('dist/PruneCluster.js') }}"></script>
     @stack('scripts')
 </body>
