@@ -35,23 +35,6 @@ var map = L.map('map', {
     },
   ], { position: 'bottomleft' }).addTo(map);
 
-// var planet = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png', {
-//     detectRetina: true,
-//     attribution: 'Auriga & KPA',
-//     maxNativeZoom: 17
-// }).addTo(map);
-
-// var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-//     maxZoom: 20,
-//     subdomains:['mt0','mt1','mt2','mt3'],
-//     attribution: 'Auriga & KPA'
-// })
-
-// var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-//     detectRetina: true,
-//     attribution: 'Auriga & KPA',
-//     maxNativeZoom: 17
-// });
 
 
 var hgu = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
@@ -130,24 +113,6 @@ $(document).ready(function () {
         }
     });
 });
-
-
-// var baseLayers = {
-//     "OpenStreetMap": osm,
-//     "Esri Satellite": planet,
-//     "Google Sattelite" : googleSat
-// };
-
-// var overlays = {
-//     "Kawasan Hutan": forestADM,
-//     "HGU" : hgu,
-//     "PBPH ": IUPHHK_adm,
-//     "POLYGON LPRA": poly,
-// };
-
-// L.control.layers(baseLayers, overlays, {position: 'bottomleft'}).addTo(map);
-
-
 
 
 var pruneCluster = new PruneClusterForLeaflet();
@@ -288,32 +253,65 @@ String.prototype.toSlug = function (separator = "-") {
 // console.log(slugify('LPRA Buwun Mas_Lombok Barat_NTB', '-'))
 
 const popupContent = function(data){
-    return  '<div class="flex flex-col text-black w-full">'+
-            ' <h1 class="text-xl font-semibold capitalize">LPRA '+data.desa_kel+'.</h1>'+
-                '<div class="mt-4 flex space-x-2"><a style="color:black" class="font-semibold"> Luas LPRA:</a> <a style="color:black"> '+data.luas_ha+' ha</a></div>'+
-                '<div class=" flex space-x-2"><a style="color:black" class="font-semibold">Jumlah Keluarga:</a> <a  style="color:black">'+data.subjek_kk+' kk</a></div>'+
-                '<div class="flex space-x-2">'+
-                '<a style="color:black" class="font-semibold">Penggunaan Tanah:</a> <a style="color:black">'+data.tata_guna+'.</a>'+
+    return '<section class="">'+
+            '<div class=" z-20">'+
+                ' <h1 class="font-semibold capitalize" style="font-size:22px">LPRA '+data.desa_kel+'</h1>'+
+                '<div class="w-full flex gap-2" style="margin-top: 7px;">'+
+                    '<span class="text-gray-900" style="font-size:14px">Luas LPRA <a class=" font-bold" style="color: black !important;"> '+data.luas_ha+' ha</a></span>'+
+                    '<span class="text-gray-900" style="font-size:14px">Jumlah Keluarga <a class=" font-bold" style="color: black !important;">  '+data.subjek_kk+' kk</a></span>'+
                 '</div>'+
-                    '<div class="flex space-x-2">'+
-                    '<a style="color:black" class="font-semibold">Tipologi: </a> <a style="color:black">'+data.tipologi+'</a>' +
+                '<div class=" flex flex-col" style="margin-top: 7px;">'+
+                    '<span class="text-gray-900" style="font-size:14px">Penggunaan Tanah</span>'+
+                    '<h1 class="lowercase font-bold" style="font-size:14px; color: black !important;margin-top: -3px;">'+data.tata_guna+'</h1>'+
                 '</div>'+
+                '<div class=" flex flex-col" style="margin-top: 7px;">'+
+                    '<span class="text-gray-900" style="font-size:14px"> Tipologi</span>'+
+                    '<h1 class="lowercase font-bold" style="font-size:14px; color: black !important;margin-top: -3px;">'+data.tipologi+'</h1>'+
                 '</div>'+
-                    '<div class="flex space-x-2">'+
-                    '<a style="color:black" class="font-semibold">Berkonflik dengan: </a> <a style="color:black">'+data.perusahaan+'</a>' +
+                '<div class=" flex flex-col" style="margin-top: 7px;">'+
+                    '<span class="text-gray-900" style="font-size:14px">Berkonflik dengan</span>'+
+                    '<h1 class="lowercase font-bold" style="font-size:14px; color: black !important;margin-top: -3px;">'+data.perusahaan+'</h1>'+
                 '</div>'+
+                '<div class=" flex flex-col" style="margin-top: 7px;">'+
+                    '<span class="text-gray-900" style="font-size:14px">Pengusul</span>'+
+                    '<h1 class="lowercase font-bold" style="font-size:14px; color: black !important;margin-top: -3px;">'+data.organisasi+'</h1>'+
                 '</div>'+
-                    '<div class="flex space-x-2">'+
-                    '<a style="color:black" class="font-semibold">Pengusul: </a> <a style="color:black">'+data.organisasi+'</a>' +
+                '<div class=" flex flex-col" style="margin-top: 7px;">'+
+                    '<span class="text-gray-900" style="font-size:14px">Lokasi</span>'+
+                    '<h1 class="lowercase font-bold" style="font-size:14px; color: black !important; margin-top: -3px;">'+data.desa_kel.toProperCase()+', Kec '+data.kab_kota.toProperCase()+', Kab/Kota '+data.kec.toProperCase()+',  '+data.provinsi.toProperCase()+'</h1>'+
                 '</div>'+
-                '<div class="flex space-x-2">'+
-                    '<a style="color:black" class="font-semibold">Lokasi: </a> <a style="color:black">Desa '+data.desa_kel.toProperCase()+', Kec '+data.kab_kota.toProperCase()+', Kab/Kota '+data.kec.toProperCase()+',  '+data.provinsi.toProperCase()+'.</a>'+
+                '<div class=" flex flex-col" style="margin-top: 7px;">'+
+                    '<span class="text-gray-900" style="font-size:14px">Profil</span>'+
+                    '<a href="profile/'+data.orig_fid+'" style="color: red; font-size:14px; cursor: pointer;">Lebih detail.</a>'+
                 '</div>'+
-                '<div class="flex space-x-2">'+
-                    '<a style="color:black" class="font-semibold">Profil: </a> <a href="profile/'+data.orig_fid+'" style="color: red">Lebih detail.</a>'+
-                '</div>'+
-                '</div>'+
-            '</div>'
+            '</div>'+
+        '</section>'
+    // return  '<div class="flex flex-col  w-full">'+ style="color: black !important;"
+     //         ' <h1 class="text-xl font-semibold capitalize">LPRA '+data.desa_kel+'.</h1>'+
+    //             '<div class="mt-4 flex space-x-2"><a style="color:black" class="font-semibold"> Luas LPRA:</a> <a style="color:black"> '+data.luas_ha+' ha</a></div>'+
+    //             '<div class=" flex space-x-2"><a style="color:black" class="font-semibold">Jumlah Keluarga:</a> <a  style="color:black">'+data.subjek_kk+' kk</a></div>'+
+    //             '<div class="flex space-x-2">'+
+    //             '<a style="color:black" class="font-semibold">Penggunaan Tanah:</a> <a style="color:black">'+data.tata_guna+'.</a>'+
+    //             '</div>'+
+    //                 '<div class="flex space-x-2">'+
+    //                 '<a style="color:black" class="font-semibold">Tipologi: </a> <a style="color:black">'+data.tipologi+'</a>' +
+    //             '</div>'+
+    //             '</div>'+
+    //                 '<div class="flex space-x-2">'+
+    //                 '<a style="color:black" class="font-semibold">Berkonflik dengan: </a> <a style="color:black">'+data.perusahaan+'</a>' +
+    //             '</div>'+
+    //             '</div>'+
+    //                 '<div class="flex space-x-2">'+
+    //                 '<a style="color:black" class="font-semibold">Pengusul: </a> <a style="color:black">'+data.organisasi+'</a>' +
+    //             '</div>'+
+    //             '<div class="flex space-x-2">'+
+    //                 '<a style="color:black" class="font-semibold">Lokasi: </a> <a style="color:black">Desa '+data.desa_kel.toProperCase()+', Kec '+data.kab_kota.toProperCase()+', Kab/Kota '+data.kec.toProperCase()+',  '+data.provinsi.toProperCase()+'.</a>'+
+    //             '</div>'+
+    //             '<div class="flex space-x-2">'+
+    //                 '<a style="color:black" class="font-semibold">Profil: </a> <a href="profile/'+data.orig_fid+'" style="color: red">Lebih detail.</a>'+
+    //             '</div>'+
+    //             '</div>'+
+    //         '</div>'
 }
 
 pruneCluster.PrepareLeafletMarker = function (marker, data, category) {

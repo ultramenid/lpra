@@ -272,3 +272,7 @@
     position: relative;
     content:''
 }
+.leaflet-popup-content-wrapper, .leaflet-popup-tip {
+    background: rgba(253, 253, 253, 0.5) !important;
+    width: 550px !important;
+  }
