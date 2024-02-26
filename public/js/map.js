@@ -6,24 +6,52 @@ var map = L.map('map', {
     zoomControl: true
   });
 
+  new L.bmSwitcher([
+    {
+      layer:  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png', {
+        detectRetina: true,
+        attribution: 'Auriga & KPA',
+        maxNativeZoom: 17}).addTo(map),
+      icon: '../assets/esri-satelit.png',
+      name: ''
+    },
+    {
+      layer: L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+        maxZoom: 20,
+        subdomains:['mt0','mt1','mt2','mt3'],
+        attribution: 'Auriga & KPA'
+    }),
+      icon: '../assets/google-satelit.png',
+      name: ''
+    },
+    {
+      layer: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        detectRetina: true,
+        attribution: 'Auriga & KPA',
+        maxNativeZoom: 17
+    }),
+      icon: '../assets/osm.png',
+      name: ''
+    },
+  ], { position: 'bottomleft' }).addTo(map);
 
-var planet = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png', {
-    detectRetina: true,
-    attribution: 'Auriga & KPA',
-    maxNativeZoom: 17
-}).addTo(map);
+// var planet = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png', {
+//     detectRetina: true,
+//     attribution: 'Auriga & KPA',
+//     maxNativeZoom: 17
+// }).addTo(map);
 
-var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-    maxZoom: 20,
-    subdomains:['mt0','mt1','mt2','mt3'],
-    attribution: 'Auriga & KPA'
-})
+// var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+//     maxZoom: 20,
+//     subdomains:['mt0','mt1','mt2','mt3'],
+//     attribution: 'Auriga & KPA'
+// })
 
-var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    detectRetina: true,
-    attribution: 'Auriga & KPA',
-    maxNativeZoom: 17
-});
+// var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+//     detectRetina: true,
+//     attribution: 'Auriga & KPA',
+//     maxNativeZoom: 17
+// });
 
 
 var hgu = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
@@ -104,20 +132,20 @@ $(document).ready(function () {
 });
 
 
-var baseLayers = {
-    "OpenStreetMap": osm,
-    "Esri Satellite": planet,
-    "Google Sattelite" : googleSat
-};
+// var baseLayers = {
+//     "OpenStreetMap": osm,
+//     "Esri Satellite": planet,
+//     "Google Sattelite" : googleSat
+// };
 
-var overlays = {
-    "Kawasan Hutan": forestADM,
-    "HGU" : hgu,
-    "PBPH ": IUPHHK_adm,
-    "POLYGON LPRA": poly,
-};
+// var overlays = {
+//     "Kawasan Hutan": forestADM,
+//     "HGU" : hgu,
+//     "PBPH ": IUPHHK_adm,
+//     "POLYGON LPRA": poly,
+// };
 
-L.control.layers(baseLayers, overlays, {position: 'bottomleft'}).addTo(map);
+// L.control.layers(baseLayers, overlays, {position: 'bottomleft'}).addTo(map);
 
 
 

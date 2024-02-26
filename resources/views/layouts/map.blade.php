@@ -21,6 +21,7 @@
     <script src="https://unpkg.com/leaflet-gesture-handling"></script>
     <script src="{{ asset('js/provinsi.js') }}"  ></script>
     <script src="{{ asset('js/betterWMS.js') }}"  ></script>
+    <script src="{{ asset('js/bmSwitcher.js') }}"  ></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 

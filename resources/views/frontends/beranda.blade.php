@@ -95,7 +95,7 @@
     {{-- infografik --}}
     <div class="max-w-6xl mx-auto px-4 py-12 ">
         <h1 class="mb-6 text-4xl font-bold">Infografik</h1>
-        <img src="{{ asset('assets/infografik.jpg') }}" alt="">
+        <img src="{{ asset('assets/infoweb1.jpg') }}" alt="">
     </div>
 
     {{-- redistribusi --}}

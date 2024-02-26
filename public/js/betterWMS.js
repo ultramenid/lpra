@@ -49,7 +49,7 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
             width: size.x,
             layers: this.wmsParams.layers,
             query_layers: this.wmsParams.layers,
-            propertyName: "ctgry_ina, decree",
+            propertyName: "ctgry_ina",
             info_format: 'application/json'
           };
 
