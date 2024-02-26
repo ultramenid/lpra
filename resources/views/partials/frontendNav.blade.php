@@ -8,19 +8,19 @@
 <div class=" w-full py-2">
     <div class="sm:max-w-7xl  mx-auto px-4 flex items-center sm:justify-center justify-between overflow-x-auto scrollbar-hide">
         <div class="sm:px-10 px-4 py-2  ">
-            <a href="{{ route('beranda') }}" class=" @if($nav == 'home') text-bukanlepra font-bold @else  @endif ">Beranda</a>
+            <a href="{{ route('beranda') }}" class="cursor-pointer @if($nav == 'home') text-bukanlepra font-bold @else  @endif ">Beranda</a>
         </div>
         <div class="sm:px-10 px-4 py-2  ">
-            <a href="{{ route('about') }}" class=" @if($nav == 'about') text-bukanlepra font-bold @else  @endif ">Tentang</a>
+            <a href="{{ route('about') }}" class="cursor-pointer @if($nav == 'about') text-bukanlepra font-bold @else  @endif ">Tentang</a>
         </div>
         <div class="sm:px-10 px-4 py-2  ">
-            <a href="{{ route('index', ['status'=>'all']) }}" class=" @if($nav == 'peta') text-bukanlepra font-bold  @else  @endif">Peta</a>
+            <a href="{{ route('index', ['status'=>'all']) }}" class="cursor-pointer @if($nav == 'peta') text-bukanlepra font-bold  @else  @endif">Peta</a>
         </div>
         <div class="sm:px-10 px-4 py-2 ">
-            <a href="{{ route('profile') }}" class="  @if($nav == 'profiles') text-bukanlepra font-bold @else  @endif">Profil</a>
+            <a href="{{ route('profile') }}" class=" cursor-pointer @if($nav == 'profiles') text-bukanlepra font-bold @else  @endif">Profil</a>
         </div>
         <div class="sm:px-10 px-4 py-2  ">
-            <a href="{{ route('updates') }}" class="  @if($nav == 'updates') text-bukanlepra font-bold @else  @endif">Informasi</a>
+            <a href="{{ route('updates') }}" class=" cursor-pointer @if($nav == 'updates') text-bukanlepra font-bold @else  @endif">Informasi</a>
         </div>
     </div>
 </div>

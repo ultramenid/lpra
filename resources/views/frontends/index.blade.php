@@ -6,7 +6,7 @@
     <div class="" x-data=" {sidebar:true}">
 
         <div class="absolute top-2 rounded left-5 z-20">
-            <div :class="{'h-[85vh]': sidebar, 'h-full': !sidebar}" class=" w-96   bg-white bg-opacity-50 py-6 shadow-lg shadow-r select-none overflow-y-auto scrollbar-hide">
+            <div :class="{'h-[85vh]': sidebar, 'h-full': !sidebar}" class=" w-96   bg-white bg-opacity-50 py-6 shadow-lg shadow-r select-none overflow-y-auto scrollbar-hide rounded-lg">
                 <a class="z-50 relative" href="{{ route('beranda') }}"><img src="{{ asset('assets/lpralogo-1.png') }}" alt="" class=" text-center mx-auto h-28"></a>
 
                 <div class="relative " x-show="sidebar">

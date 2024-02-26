@@ -9,19 +9,19 @@
     <div class=" w-full ">
         <div class="sm:max-w-7xl  mx-auto px-4 flex items-center sm:justify-center justify-between overflow-x-auto scrollbar-hide ">
             <div class="px-4 py-2  @if($nav == 'beranda') border-b-4 border-white  rounded @endif">
-                <a href="{{ route('beranda') }}" class="text-white font-semibold sm:text-base text-xs">beranda</a>
+                <a href="{{ route('beranda') }}" class="text-white font-semibold sm:text-base text-xs cursor-pointer">beranda</a>
             </div>
             <div class="px-4 py-2  @if($nav == 'about') border-b-4 border-white  rounded @endif">
-                <a href="{{ route('about') }}" class="text-white font-semibold sm:text-base text-xs">tentang</a>
+                <a href="{{ route('about') }}" class="text-white font-semibold sm:text-base text-xs cursor-pointer">tentang</a>
             </div>
             <div class="px-4 py-2  @if($nav == 'index') border-b-4 border-white  rounded @endif">
-                <a href="{{ route('index', ['status'=>'all']) }}" class=" text-white font-bold sm:text-base text-xs">map</a>
+                <a href="{{ route('index', ['status'=>'all']) }}" class=" text-white font-bold sm:text-base text-xs cursor-pointer">map</a>
             </div>
             <div class="px-4 py-2  @if($nav == 'profile') border-b-4 border-white  rounded @endif">
-                <a href="{{ route('profile') }}" class="text-white font-semibold sm:text-base text-xs">profil</a>
+                <a href="{{ route('profile') }}" class="text-white font-semibold sm:text-base text-xs cursor-pointer">profil</a>
             </div>
             <div class="px-4 py-2  @if($nav == 'updates') border-b-4 border-white  rounded @endif">
-                <a href="{{ route('updates') }}" class="text-white font-semibold sm:text-base text-xs">informasi</a>
+                <a href="{{ route('updates') }}" class="text-white font-semibold sm:text-base text-xs cursor-pointer">informasi</a>
             </div>
         </div>
     </div>
