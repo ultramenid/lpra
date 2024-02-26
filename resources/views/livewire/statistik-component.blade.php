@@ -1,18 +1,25 @@
-<div class="absolute top-1 right-5 z-20">
-    <div class="bg-white bg-opacity-50 px-2 rounded mt-1 w-96 py-2 " x-data=" {legend:false}" >
-        <div :class="{'w-full': legend, 'w-96': !legend}" class=" flex justify-between   items-center cursor-pointer" @click="legend=!legend ">
+<div class="absolute top-1 right-5 z-20" x-data=" {legend:false}">
+    <div class="bg-white bg-opacity-50 px-2 rounded mt-1 w-96 py-2 "  >
+        <div  class=" flex justify-between   items-center cursor-pointer" >
             <label  class="w-full mt-2 font-bold ">Statistik</label>
-            <div>
-                <svg fill="currentColor" viewBox="0 0 20 20" :class="{'rotate-0': legend, 'rotate-180 mr-4 ': !legend}" class="inline w-4 h-4 items-center transition-transform duration-200 transform "><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </div>
         </div>
-        <div class="px-2" style="display: none !important" x-show="legend" :class="{'block': legend, 'hidden': !legend}" x-data="{tematic: 'hutan'}">
-            <h1 class="mt-4 text-4xl">{{$totallpra}} LPRA</h1>
+        <p class="mt-2">Deksripsi statistik Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, vel provident. Omnis est libero expedita assumenda eius</p>
+        <div class="flex gap-2 mt-4 text-3xl items-center" :class="{'mb-2': legend, 'mb-9': !legend}">
+            Total : <h1 class=" font-bold text-4xl"> {{$totallpra}} </h1>
+            LPRA
+        </div>
+        <div class="px-2" style="display: none !important" x-show="legend" x-transition  :class="{'block': legend, 'hidden': !legend}" x-data="{tematic: 'hutan'}">
+
             <div id="total"></div>
             <div id="tipologi"></div>
             {{-- <livewire:total-tipologi /> --}}
         </div>
 
+        <div class="bottom-0 flex justify-center">
+            <div class="rounded-lg px-6  bg-gray-500 bg-opacity-90 text-center -mb-7 cursor-pointer" @click="legend=!legend">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" stroke-width="0.1" stroke="none"  :class="{'rotate-180': legend, 'rotate-0': !legend}" class=" w-9 h-9 text-white transition-transform duration-200 transform "><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
+            </div>
+        </div>
     </div>
     <script>
         // document.addEventListener('livewire:load', function () {

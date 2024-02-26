@@ -1,9 +1,9 @@
 
 var map = L.map('map', {
-    center: [0.7893, 118.5213],
+    center: [0.7893, 112.5213],
     zoom: 5.4,
     // attributionControl: false,
-    zoomControl: true
+    zoomControl: false
   });
 
   new L.bmSwitcher([
