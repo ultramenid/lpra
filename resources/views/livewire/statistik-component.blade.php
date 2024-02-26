@@ -3,7 +3,7 @@
         <div  class=" flex justify-between   items-center cursor-pointer" >
             <label  class="w-full mt-2 font-bold ">Statistik</label>
         </div>
-        <p class="mt-2">Deksripsi statistik Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, vel provident. Omnis est libero expedita assumenda eius</p>
+        <p class="mt-2 text-sm font-light">Mencakup status konflik LPRA dengan Kawasan Hutan dan Perkebunan/APL lainnya.</p>
         <div class="flex gap-2 mt-4 text-3xl items-center" :class="{'mb-2': legend, 'mb-9': !legend}">
             Total : <h1 class=" font-bold text-4xl"> {{$totallpra}} </h1>
             LPRA
