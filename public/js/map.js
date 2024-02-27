@@ -278,7 +278,7 @@ const popupContent = function(data){
                 '</div>'+
                 '<div class=" flex flex-col" style="margin-top: 7px;">'+
                     '<span class="text-gray-900" style="font-size:14px">Lokasi</span>'+
-                    '<h1 class="lowercase font-bold" style="font-size:14px; color: black !important; margin-top: -3px;">'+data.desa_kel.toProperCase()+', Kec '+data.kab_kota.toProperCase()+', Kab/Kota '+data.kec.toProperCase()+',  '+data.provinsi.toProperCase()+'</h1>'+
+                    '<h1 class=" font-bold" style="font-size:14px; color: black !important; margin-top: -3px;">'+data.desa_kel.toProperCase()+', Kec '+data.kab_kota.toProperCase()+', Kab/Kota '+data.kec.toProperCase()+',  '+data.provinsi.toProperCase()+'</h1>'+
                 '</div>'+
                 '<div class=" flex flex-col" style="margin-top: 7px;">'+
                     '<span class="text-gray-900" style="font-size:14px">Profil</span>'+
