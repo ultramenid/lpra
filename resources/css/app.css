@@ -275,3 +275,9 @@
 .leaflet-popup-content-wrapper, .leaflet-popup-tip {
     background: rgba(253, 253, 253, 0.5) !important;
   }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: var(--swiper-pagination-color, var(--swiper-theme-color));
+    background-color: black;
+}

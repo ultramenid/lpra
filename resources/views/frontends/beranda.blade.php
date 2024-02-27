@@ -6,9 +6,9 @@
 
     {{-- image --}}
     <div class="relative">
-        <img class="sm:h-[75vh] w-full object-cover object-bottom" src="{{ asset('assets/hero-1.jpeg') }}" alt="Lokasi Prioritas Reforma Agraria">
+        <img class="sm:h-[75vh] w-full object-cover object-top" src="{{ asset('assets/imghero.jpg') }}" alt="Lokasi Prioritas Reforma Agraria">
         <div class="max-w-6xl mx-auto">
-            <div class="absolute sm:bottom-20 bottom-5 sm:px-0 px-4">
+            <div class="absolute sm:bottom-40 bottom-5 sm:px-0 px-4">
                 <h1 class="text-white font-black tracking-wide sm:text-6xl text-xl  w-8/12" >Jalankan Reforma Agraria Sejati</h1>
                 {{-- <p class="max-w-4xl mt-6 text-xl font-light text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad obcaecati at facere dolore neque itaque quae! Impedit voluptates aperiam dicta corporis tempore, architecto voluptatum, quod quas ab eaque, aliquid delectus.</p> --}}
             </div>
@@ -16,7 +16,7 @@
     </div>
 
     {{-- updates --}}
-    <div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="max-w-6xl mx-auto px-4 mt-6 mb-1">
         <h1 class="text-4xl font-bold">Informasi</h1>
     </div>
     <div x-data="{swiper: null}"
@@ -27,6 +27,10 @@
             centeredSlides: true,
             centeredSlidesBounds: true,
             centeredSlides: true,
+            pagination: {
+                el: '.swiper-pagination',
+                dynamicBullets: true,
+            },
 
             breakpoints: {
             640: {
@@ -58,7 +62,7 @@
 
             </button>
         </div>
-        <div class="sm:block hidden h-60 w-[12%] mt-4 bg-black absolute bg-opacity-70  z-20 -ml-2 rounded">
+        <div class="sm:block hidden h-60 w-[12%] mt-10 bg-black absolute bg-opacity-70  z-20 -ml-2 rounded">
             <div class="inset-y-0 left-0">
             </div>
         </div>
@@ -68,7 +72,7 @@
             <div class="swiper-wrapper">
                 @foreach ($updates as $item)
                     <!-- Slides -->
-                    <div class="swiper-slide p-4 flex flex-col gap-4 bg-newgray-100" >
+                    <div class="swiper-slide py-10 p-4 flex flex-col gap-4 bg-newgray-100" >
                         <a href="{{ url('update', [$item->id,$item->slug]) }}">
                             <img class="h-60 w-full object-cover object-center rounded" src="{{ asset('storage/photos/shares/'.$item->img) }}" alt="{{$item->titleID}}">
                         </a>
@@ -77,9 +81,11 @@
                     </div>
                 @endforeach
             </div>
+            <div class="swiper-pagination" ></div>
+
         </div>
 
-        <div class="sm:block hidden h-60 w-[12%] -mr-2 rounded mt-4 bg-black absolute bg-opacity-70  inset-y-0 right-0 z-20">
+        <div class="sm:block hidden h-60 w-[12%] -mr-2 rounded mt-10 bg-black absolute bg-opacity-70  inset-y-0 right-0 z-20">
         </div>
 
         <div class="absolute inset-y-0 sm:right-40 right-0 z-30 flex items-center">
@@ -92,6 +98,7 @@
 
             </button>
         </div>
+
 
     </div>
 
