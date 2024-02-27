@@ -317,7 +317,7 @@ const popupContent = function(data){
 pruneCluster.PrepareLeafletMarker = function (marker, data, category) {
     marker.on('click', function(){
         // console.log(marker._latlng)
-        map.flyTo(marker._latlng,13);
+        // map.flyTo(marker._latlng,13);
     });
     marker.setIcon(data.icon)
     if (marker.getPopup()) {

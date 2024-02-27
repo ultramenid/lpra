@@ -64,7 +64,7 @@ L.TileLayer.BetterWMS = L.TileLayer.WMS.extend({
              console.log(content.features[0].properties);
             L.popup()
             .setLatLng(latlng)
-            .setContent('<p>'+ content.features[0].properties.ctgry_ina, content.features[0].properties.decree +'</p>')
+            .setContent('<p class="text-xl font-bold" style="color:black">'+ content.features[0].properties.ctgry_ina +'</p>')
             .openOn(this._map);
             return; } // do nothing if there's an contentor
         //   console.log(content.properties)
