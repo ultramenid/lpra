@@ -22,7 +22,7 @@
                     <img class="w-full h-full object-cover object-center rounded-full  border" src="{{ asset('storage/photos/shares/'.$item->img) }}" alt="LPRA {{$item->desa_kel}}" >
                 </div>
                 <div class="text-brown-ndpe w-full ">
-                    <a href="{{ url('profile', [$item->fid, $item->desa_kel]) }}" class="hover:underline sm:text-2xl text-xl font-notoserif cursor-pointer mb-6">LPRA {{$item->desa_kel}}</a>
+                    <a href="{{ route('detailprofile', [$item->fid]) }}" class="hover:underline sm:text-2xl text-xl font-notoserif cursor-pointer mb-6">LPRA {{$item->desa_kel}}</a>
                     <div class="flex space-x-2 text-xs text-gray-500 font-light mt-2">
                         <a>Luas: </a>
                         <a>{{$item->luas}}</a>

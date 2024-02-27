@@ -27,7 +27,7 @@ Route::get('/map/{status}', [IndexController::class, 'index'])->name('index');
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::get('/profile', [ProfileController::class, 'list'])->name('profile');
 Route::get('/updates', [UpdatesController::class, 'updates'])->name('updates');
-Route::get('/map/profile/{fid}', [ProfileController::class, 'detailprofile']);
+Route::get('/profile/{fid}', [ProfileController::class, 'detailprofile'])->name('detailprofile');
 Route::get('/update/{id}/{slug}', [UpdatesController::class, 'detailUpdate']);
 Route::get('/redistribusi/{id}/{slug}', [RedistribusiController::class, 'detailRedistribusi']);
 

@@ -9,13 +9,16 @@
         <img class="sm:h-[75vh] w-full object-cover object-bottom" src="{{ asset('assets/hero-1.jpeg') }}" alt="Lokasi Prioritas Reforma Agraria">
         <div class="max-w-6xl mx-auto">
             <div class="absolute sm:bottom-20 bottom-5 sm:px-0 px-4">
-                <h1 class="text-white font-black tracking-wide sm:text-6xl text-xl  w-8/12" >Bukan tanah negara, kembalikan hak kami</h1>
+                <h1 class="text-white font-black tracking-wide sm:text-6xl text-xl  w-8/12" >Jalankan Reforma Agraria Sejati</h1>
                 {{-- <p class="max-w-4xl mt-6 text-xl font-light text-white">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad obcaecati at facere dolore neque itaque quae! Impedit voluptates aperiam dicta corporis tempore, architecto voluptatum, quod quas ab eaque, aliquid delectus.</p> --}}
             </div>
         </div>
     </div>
 
     {{-- updates --}}
+    <div class="max-w-6xl mx-auto px-4 py-4">
+        <h1 class="text-4xl font-bold">Informasi</h1>
+    </div>
     <div x-data="{swiper: null}"
         x-init="swiper = new Swiper($refs.container, {
             loop: true,
@@ -43,7 +46,7 @@
             },
             },
         })"
-        class="relative flex flex-row mt-10"
+        class="relative flex flex-row "
         >
         <div class="absolute inset-y-0 sm:left-44 left-0 z-30 flex items-center">
             <button @click="swiper.slidePrev()"
@@ -61,6 +64,7 @@
         </div>
 
         <div class="swiper-container" x-ref="container">
+
             <div class="swiper-wrapper">
                 @foreach ($updates as $item)
                     <!-- Slides -->
@@ -101,7 +105,7 @@
     {{-- redistribusi --}}
     <div class=" py-4 max-w-6xl mx-auto px-4">
         <div class="w-full flex justify-between items-center text-auriga-biru">
-            <h1 class="font-verybold md:text-3xl text-xl">Sudah Redistribusi</h1>
+            <h1 class="mb-6 text-4xl font-bold">Sudah Redistribusi</h1>
         </div>
         <div class="flex flex-row  scrollbar-hide overflow-x-scroll h-full sm:gap-0 gap-4   mt-6 snap-x snap-mandatory">
            @foreach ($redistribusi as $item )
@@ -220,7 +224,7 @@
         </div>
     </div>
 
-    @include('partials.frontendNav')
+    @include('partials.frontendFooter')
 
 
 @endsection()

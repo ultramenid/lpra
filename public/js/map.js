@@ -282,7 +282,7 @@ const popupContent = function(data){
                 '</div>'+
                 '<div class=" flex flex-col" style="margin-top: 7px;">'+
                     '<span class="text-gray-900" style="font-size:14px">Profil</span>'+
-                    '<a href="profile/'+data.orig_fid+'" style="color: red; font-size:14px; cursor: pointer;">Lebih detail.</a>'+
+                    '<a href="'+baseurl+'/profile/'+data.orig_fid+'" style="color: red; font-size:14px; cursor: pointer;">Lebih detail.</a>'+
                 '</div>'+
             '</div>'+
         '</section>'
@@ -316,7 +316,7 @@ const popupContent = function(data){
 
 pruneCluster.PrepareLeafletMarker = function (marker, data, category) {
     marker.on('click', function(){
-        // console.log(marker._latlng)
+        console.log(data)
         // map.flyTo(marker._latlng,13);
     });
     marker.setIcon(data.icon)
@@ -327,7 +327,7 @@ pruneCluster.PrepareLeafletMarker = function (marker, data, category) {
 
         if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
           }else{
-            marker.bindTooltip(data.popup);
+            marker.bindTooltip('LPRA '+data.tooltip);
           }
 
     }
@@ -345,7 +345,7 @@ function handleJson(data) {
                 if(feature.properties.status == 'HUTAN'){
                     const hutan = new PruneCluster.Marker(feature.properties.lat, feature.properties.long, {
                                 icon: iconhutan,
-                                tooltip: feature.properties.status,
+                                tooltip: feature.properties.desa_kel,
                                 popup: popupContent(feature.properties),
                                 });
                                 hutan.category = 0;
@@ -354,7 +354,7 @@ function handleJson(data) {
                 }else if(feature.properties.status == 'NON-HUTAN'){
                     const nonhutan = new PruneCluster.Marker(feature.properties.lat, feature.properties.long, {
                         icon: iconnonhutan,
-                        tooltip: feature.properties.status,
+                        tooltip: feature.properties.desa_kel,
                         popup: popupContent(feature.properties),
                         });
                         nonhutan.category = 1;

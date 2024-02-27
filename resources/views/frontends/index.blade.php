@@ -272,7 +272,7 @@
 
 @push('scripts')
     <script>
-
+        var baseurl = '<?php echo url('') ?>';
         var data = '<?php echo $klaim  ?>';
         console.log(data)
     </script>
