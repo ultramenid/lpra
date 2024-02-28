@@ -11,7 +11,13 @@
             <a href="{{ url('update', [$item->id ,$item->slug]) }}" class="md:mt-6 mt-3 md:text-2xl text-xl font-bold ">{{$item->titleID}}
             </a>
             <div class="md:mt-6 mt-3 ">
-                <a class="font-bold">{{ \Carbon\Carbon::parse($item->publishdate)->format('d F Y')}}</a><span> | </span><a>{{$item->descID}}</a>
+                <a class="font-bold">
+                    @php
+                        $date = \Carbon\Carbon::parse($item->publishdate)->locale('id');
+                        $date->settings(['formatFunction' => 'translatedFormat']);
+                        echo $date->format('d F Y');
+                    @endphp
+                </a><span> | </span><a>{{$item->descID}}</a>
             </div>
        </div>
         @endforeach

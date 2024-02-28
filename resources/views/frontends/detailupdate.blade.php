@@ -5,7 +5,13 @@
 
     <div class="max-w-4xl mx-auto px-4 mt-12" >
         <h1 class="text-4xl font-bold mb-2">{{$data->titleID}}</h1>
-        <a class="font-extralight mb-6 mt-6"> {{ \Carbon\Carbon::parse($data->publishdate)->format('d F Y')}} </a>
+        <a class="font-extralight mb-6 mt-6">
+            @php
+                $date = \Carbon\Carbon::parse($data->publishdate)->locale('id');
+                $date->settings(['formatFunction' => 'translatedFormat']);
+                echo $date->format('d F Y');
+            @endphp
+        </a>
         <p class=" max-w-2xl mt-6 font-light">{{$data->descID}}
         </p>
         <div class="mt-6">

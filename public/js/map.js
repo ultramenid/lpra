@@ -10,7 +10,7 @@ var map = L.map('map', {
     {
       layer:  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png', {
         detectRetina: true,
-        attribution: 'Auriga & KPA',
+        attribution: 'KPA & Auriga',
         maxNativeZoom: 17}).addTo(map),
       icon: '../assets/esri-satelit.png',
       name: ''
@@ -19,7 +19,7 @@ var map = L.map('map', {
       layer: L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
         maxZoom: 20,
         subdomains:['mt0','mt1','mt2','mt3'],
-        attribution: 'Auriga & KPA'
+        attribution: 'KPA & Auriga'
     }),
       icon: '../assets/google-satelit.png',
       name: ''
@@ -27,7 +27,7 @@ var map = L.map('map', {
     {
       layer: L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         detectRetina: true,
-        attribution: 'Auriga & KPA',
+        attribution: 'KPA & Auriga',
         maxNativeZoom: 17
     }),
       icon: '../assets/osm.png',
@@ -282,7 +282,7 @@ const popupContent = function(data){
                 '</div>'+
                 '<div class=" flex flex-col" style="margin-top: 7px;">'+
                     '<span class="text-gray-900" style="font-size:14px">Profil</span>'+
-                    '<a href="'+baseurl+'/profile/'+data.orig_fid+'" style="color: red; font-size:14px; cursor: pointer;">Lebih detail.</a>'+
+                    '<a target="_blank" href="'+baseurl+'/profile/'+data.orig_fid+'" style="color: red; font-size:14px; cursor: pointer;">Lebih detail.</a>'+
                 '</div>'+
             '</div>'+
         '</section>'
@@ -316,8 +316,9 @@ const popupContent = function(data){
 
 pruneCluster.PrepareLeafletMarker = function (marker, data, category) {
     marker.on('click', function(){
-        console.log(data)
+        console.log(data.tooltip)
         // map.flyTo(marker._latlng,13);
+
     });
     marker.setIcon(data.icon)
     if (marker.getPopup()) {
@@ -588,7 +589,7 @@ function resetLayer(){
         status.value = (data == 'all') ? "kosong" : data;
         hutan.value = "kosong";
         kebun.value = "kosong";
-        map.flyTo([0.7893, 118.5213],5)
+        map.flyTo([0.7893, 112.5213],5)
         Livewire.emit('test', null, (data == 'all') ? "kosong" : data)
         pruneCluster.RemoveMarkers(markershutan);
         pruneCluster.RemoveMarkers(markersnonhutan);

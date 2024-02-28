@@ -16,42 +16,47 @@
         <div class="flex sm:flex-row flex-col gap-6 py-4 items-center">
             <img src="{{ asset('storage/photos/shares/'.$data->img) }}" alt="LPRA {{$data->desa_kel}}" class="sm:w-4/12 w-full h-full">
             <div class="">
-                <div class="mt-4 flex flex-col space-y-1">
-                    <div class="flex sm:flex-row flex-col sm:space-x-4 space-x-0 ">
+                <div class="mt-4 flex flex-col gap-2">
+                    <div class="flex  flex-col ">
                         <label class="text-bukanlepra font-semibold text-sm">Luas: </label>
-                        <p class="">{{$data->luas}} ha</p>
+                        <p class="font-bold">{{$data->luas}} ha</p>
                     </div>
 
-                    <div class="flex sm:flex-row flex-col sm:space-x-4 space-x-0  w-full ">
+                    <div class="flex  flex-col ">
                         <label class="text-bukanlepra font-semibold text-sm">Jumlah Petani: </label>
-                        <p class="">{{$data->jumlahpetani}} KK</p>
+                        <p class="font-bold">{{$data->jumlahpetani}} KK</p>
                     </div>
-                    <div class="flex sm:flex-row flex-col sm:space-x-4 space-x-0  w-full ">
+                    <div class="flex  flex-col  ">
                         <label class="text-bukanlepra font-semibold text-sm">Organisasi: </label>
-                        <p class="text-sm">{{$data->organisasi}}</p>
+                        <p class="text-sm font-bold">{{$data->organisasi}}</p>
                     </div>
 
-                    <div class="flex sm:flex-row flex-col sm:space-x-4 space-x-0  w-full ">
+                    <div class="flex  flex-col  ">
                         <label class="text-bukanlepra font-semibold text-sm">Tipologi: </label>
-                        <p class="text-sm">{{$data->tipologi}}</p>
+                        <p class="text-sm font-bold">{{$data->tipologi}}</p>
                     </div>
 
-                    <div class="flex sm:flex-row flex-col sm:space-x-4 space-x-0  w-full sm:whitespace-nowrap whitespace-normal ">
+                    <div class="flex  flex-col  ">
                         <label class="text-bukanlepra font-semibold text-sm">Penggunaan Tanah: </label>
-                        <p class="text-sm">{{$data->tata_guna}}</p>
+                        <p class="text-sm font-bold">{{$data->tata_guna}}</p>
                     </div>
 
 
-                    <div class="flex sm:flex-row flex-col sm:space-x-4 space-x-0 ">
+                    <div class="flex  flex-col  ">
                         <label class="text-bukanlepra font-semibold text-sm">Lokasi: </label>
-                        <p class=" text-sm ">{{$data->desa_kel}}, {{$data->kec}}, {{$data->kab_kota}}, {{$data->provinsi}}</p>
+                        <p class=" text-sm font-bold">{{$data->desa_kel}}, {{$data->kec}}, {{$data->kab_kota}}, {{$data->provinsi}}</p>
+                    </div>
+
+                    <div class="flex  flex-col  ">
+                        <label class="text-bukanlepra font-semibold text-sm">Komoditas: </label>
+                        <p class=" text-sm font-bold">{!! $data->kesimpulan !!}</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="border border-gray-400 min-h-screen overflow-auto" x-data="{open: 'map'}"">
-            <div class="flex flex-row  scrollbar-hide overflow-auto h-full sm:gap-0 gap-4  mt-3 snap-x snap-mandatory px-4 ">
+            <div class="flex flex-row  scrollbar-hide overflow-auto h-full sm:gap-0 gap-4  mt-3 snap-x snap-mandatory px-4 justify-center">
                 <!-- card -->
                 <div
                 :class="(open === 'map') ? 'bg-nav-slide text-white' : 'bg-filter text-gray-800 hover:bg-nav-slide hover:text-white'"
@@ -76,11 +81,11 @@
                     Analisis Hukum
 
                  </div>
-                 <div :class="(open === 'komoditas') ? 'bg-nav-slide text-white' : 'bg-filter text-gray-800 hover:bg-nav-slide hover:text-white'"
+                 {{-- <div :class="(open === 'komoditas') ? 'bg-nav-slide text-white' : 'bg-filter text-gray-800 hover:bg-nav-slide hover:text-white'"
                  class="flex-shrink-0 snap-center sm:w-2/12 w-4/12 border text-center  py-2  items-center inline-flex justify-center cursor-pointer"
                  @click="open = 'komoditas'">
                     Komoditas
-                 </div>
+                 </div> --}}
                  <div :class="(open === 'rekomendasi') ? 'bg-nav-slide text-white' : 'bg-filter text-gray-800 hover:bg-nav-slide hover:text-white'"
                  class="flex-shrink-0 snap-center sm:w-2/12 w-4/12 border text-center  py-2  items-center inline-flex justify-center cursor-pointer"
                  @click="open = 'rekomendasi'">
@@ -192,9 +197,9 @@
                 <div x-show= "open==='analisishukum'" style="display: none !important" class="prose max-w-none">
                     {!! $data->analisishukum !!}
                 </div>
-                <div x-show= "open==='komoditas'" style="display: none !important" class="prose max-w-none">
-                    {!! $data->kesimpulan !!}
-                </div>
+                {{-- <div x-show= "open==='komoditas'" style="display: none !important" class="prose max-w-none">
+
+                </div> --}}
                 <div x-show= "open==='rekomendasi'" style="display: none !important" class="prose max-w-none">
                     {!! $data->Rekomendasi !!}
                 </div>
@@ -218,19 +223,19 @@
 
             var planet = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png', {
                 detectRetina: true,
-                attribution: 'Auriga & KPA',
+                attribution: 'KPA & Auriga',
                 maxNativeZoom: 17
             }).addTo(map);
 
             var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
                 maxZoom: 20,
                 subdomains:['mt0','mt1','mt2','mt3'],
-                attribution: 'Auriga & KPA'
+                attribution: 'KPA & Auriga'
             })
 
             var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
                 detectRetina: true,
-                attribution: 'Auriga & KPA',
+                attribution: 'KPA & Auriga',
                 maxNativeZoom: 17
             });
 
