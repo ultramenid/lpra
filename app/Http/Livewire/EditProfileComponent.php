@@ -196,12 +196,7 @@ class EditProfileComponent extends Component
     }
 
     public function manualValidation(){
-        if($this->photo == ''){
-            $message = 'Gambar profile harus di isi';
-            $type = 'error'; //error, success
-            $this->emit('toast',$message, $type);
-            return;
-        }elseif($this->sejarahperkebunan == ''){
+        if($this->sejarahperkebunan == ''){
             $message = 'Sejarah HGU/HGB Perkebunan harus di isi';
             $type = 'error'; //error, success
             $this->emit('toast',$message, $type);
