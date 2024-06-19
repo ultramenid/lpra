@@ -51,12 +51,12 @@ class AddprofileComponent extends Component
     }
 
     public function getProfiles(){
-            $req = Http::get('https://aws.simontini.id/geoserver/wfs',
+            $req = Http::get('https://geoserver.kpa.or.id/geoserver/wfs',
             [
                 'service' => 'wfs',
                 'version' => '1.1.1',
                 'request' => 'GetFeature',
-                'typename' => 'kpa:20231203_LPRA_0107_point',
+                'typename' => 'lpra:20231203_LPRA_0107_point',
                 'propertyName' => 'orig_fid,provinsi,kab_kota,desa_kel,kec,luas_ha,tata_guna,organisasi,lat,long,tipologi,subjek_kk',
                 'cql_filter' => "desa_kel LIKE '%". strtoupper($this->chooseprofile) ."%'",
                 'outputFormat' => 'application/json',

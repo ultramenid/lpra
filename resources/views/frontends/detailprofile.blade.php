@@ -239,20 +239,20 @@
                 maxNativeZoom: 17
             });
 
-            var forestADM = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-                    layers: '	simontini:Forest_estate_adm',
+            var forestADM = L.tileLayer.wms('https://geoserver.kpa.or.id/geoserver/wms', {
+                    layers: '	lpra:forest_estate_adm',
                     transparent: true,
                     format: 'image/png'
             })
 
-            var hgu = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-                    layers: 'kpa:HGU_BPN_2019',
+            var hgu = L.tileLayer.wms('https://geoserver.kpa.or.id/geoserver/wms', {
+                    layers: 'lpra:hgu_bpn_2019',
                     transparent: true,
                     format: 'image/png'
             })
 
-            var IUPHHK_adm = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-                    layers: 'simontini:IUPHHK_adm',
+            var IUPHHK_adm = L.tileLayer.wms('https://geoserver.kpa.or.id/geoserver/wms', {
+                    layers: 'lpra:iuphhk_adm',
                     transparent: true,
                     format: 'image/png'
             })
@@ -275,13 +275,13 @@
             L.control.layers(baseLayers, overlays, {position: 'topleft'}).addTo(map);
 
 
-            $.ajax('https://aws.simontini.id/geoserver/wfs',{
+            $.ajax('https://geoserver.kpa.or.id/geoserver/wfs',{
                 type: 'GET',
                 data: {
                     service: 'WFS',
                     version: '1.1.0',
                     request: 'GetFeature',
-                    typename: 'kpa:20231201_LPRA_11_45',
+                    typename: 'lpra:20231201_LPRA_11_45',
                     CQL_FILTER: "orig_fid = '"+ {{$data->fid}} +"'",
                     srsname: 'EPSG:4326',
                     outputFormat: 'text/javascript',

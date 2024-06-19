@@ -37,26 +37,26 @@ var map = L.map('map', {
 
 
 
-var hgu = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-        layers: 'kpa:HGU_BPN_2019',
+var hgu = L.tileLayer.wms('https://geoserver.kpa.or.id/geoserver/wms', {
+        layers: 'lpra:hgu_bpn_2019',
         transparent: true,
         format: 'image/png'
 })
 
-var IUPHHK_adm = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-        layers: 'simontini:IUPHHK_adm',
+var IUPHHK_adm = L.tileLayer.wms('https://geoserver.kpa.or.id/geoserver/wms', {
+        layers: 'lpra:iuphhk_adm',
         transparent: true,
         format: 'image/png'
 })
 
-var poly = L.tileLayer.wms('https://aws.simontini.id/geoserver/wms', {
-    layers: 'kpa:20231201_LPRA_11_45',
+var poly = L.tileLayer.wms('https://geoserver.kpa.or.id/geoserver/wms', {
+    layers: 'lpra:20231201_LPRA_11_45',
     transparent: true,
     format: 'image/png'
 }).addTo(map);
 
-var forestADM = L.tileLayer.betterWms('https://aws.simontini.id/geoserver/wms', {
-        layers: '	simontini:Forest_estate_adm',
+var forestADM = L.tileLayer.betterWms('https://geoserver.kpa.or.id/geoserver/wms', {
+        layers: 'lpra:forest_estate_adm',
         transparent: true,
         format: 'image/png'
 })
@@ -250,7 +250,6 @@ String.prototype.toSlug = function (separator = "-") {
         .replace(/\s+/g, separator);
 };
 
-// console.log(slugify('LPRA Buwun Mas_Lombok Barat_NTB', '-'))
 
 const popupContent = function(data){
     return '<section class="">'+
@@ -286,32 +285,7 @@ const popupContent = function(data){
                 '</div>'+
             '</div>'+
         '</section>'
-    // return  '<div class="flex flex-col  w-full">'+ style="color: black !important;"
-     //         ' <h1 class="text-xl font-semibold capitalize">LPRA '+data.desa_kel+'.</h1>'+
-    //             '<div class="mt-4 flex space-x-2"><a style="color:black" class="font-semibold"> Luas LPRA:</a> <a style="color:black"> '+data.luas_ha+' ha</a></div>'+
-    //             '<div class=" flex space-x-2"><a style="color:black" class="font-semibold">Jumlah Keluarga:</a> <a  style="color:black">'+data.subjek_kk+' kk</a></div>'+
-    //             '<div class="flex space-x-2">'+
-    //             '<a style="color:black" class="font-semibold">Penggunaan Tanah:</a> <a style="color:black">'+data.tata_guna+'.</a>'+
-    //             '</div>'+
-    //                 '<div class="flex space-x-2">'+
-    //                 '<a style="color:black" class="font-semibold">Tipologi: </a> <a style="color:black">'+data.tipologi+'</a>' +
-    //             '</div>'+
-    //             '</div>'+
-    //                 '<div class="flex space-x-2">'+
-    //                 '<a style="color:black" class="font-semibold">Berkonflik dengan: </a> <a style="color:black">'+data.perusahaan+'</a>' +
-    //             '</div>'+
-    //             '</div>'+
-    //                 '<div class="flex space-x-2">'+
-    //                 '<a style="color:black" class="font-semibold">Pengusul: </a> <a style="color:black">'+data.organisasi+'</a>' +
-    //             '</div>'+
-    //             '<div class="flex space-x-2">'+
-    //                 '<a style="color:black" class="font-semibold">Lokasi: </a> <a style="color:black">Desa '+data.desa_kel.toProperCase()+', Kec '+data.kab_kota.toProperCase()+', Kab/Kota '+data.kec.toProperCase()+',  '+data.provinsi.toProperCase()+'.</a>'+
-    //             '</div>'+
-    //             '<div class="flex space-x-2">'+
-    //                 '<a style="color:black" class="font-semibold">Profil: </a> <a href="profile/'+data.orig_fid+'" style="color: red">Lebih detail.</a>'+
-    //             '</div>'+
-    //             '</div>'+
-    //         '</div>'
+
 }
 
 pruneCluster.PrepareLeafletMarker = function (marker, data, category) {
@@ -368,13 +342,13 @@ function handleJson(data) {
     map.addLayer(pruneCluster);
 }
 
-    $.ajax('https://aws.simontini.id/geoserver/wfs',{
+    $.ajax('https://geoserver.kpa.or.id/geoserver/wfs',{
         type: 'GET',
         data: {
             service: 'WFS',
             version: '1.1.0',
             request: 'GetFeature',
-            typename: 'kpa:20231203_LPRA_0107_point',
+            typename: 'lpra:20231203_LPRA_0107_point',
             srsname: 'EPSG:4326',
             CQL_FILTER: (data == 'Kawasan Hutan') ? "status= 'HUTAN'" : (data == 'Kebun / APL Lainnya') ? "status= 'NON-HUTAN'" : "status like '%%'",
             outputFormat: 'text/javascript',
@@ -500,7 +474,7 @@ function submitLayer(){
         Livewire.emit('test', hutan,  status )
 
         // console.log(hutan.toUpperCase())
-        $.ajax('https://aws.simontini.id/geoserver/wfs',{
+        $.ajax('https://geoserver.kpa.or.id/geoserver/wfs',{
         type: 'GET',
             data: {
             service: 'WFS',
@@ -518,13 +492,13 @@ function submitLayer(){
 
         if(hutan == 'kosong'){
             Livewire.emit('test', hutan,  status)
-            $.ajax('https://aws.simontini.id/geoserver/wfs',{
+            $.ajax('https://geoserver.kpa.or.id/geoserver/wfs',{
             type: 'GET',
                 data: {
                 service: 'WFS',
                 version: '1.1.1',
                 request: 'GetFeature',
-                typename: 'kpa:20231203_LPRA_0107_point',
+                typename: 'lpra:20231203_LPRA_0107_point',
                 CQL_FILTER: "status= 'HUTAN'" ,
                 srsname: 'EPSG:4326',
                 outputFormat: 'text/javascript',
@@ -543,13 +517,13 @@ function submitLayer(){
         Livewire.emit('test', kebun, status)
 
         // console.log(hutan.toUpperCase())
-        $.ajax('https://aws.simontini.id/geoserver/wfs',{
+        $.ajax('https://geoserver.kpa.or.id/geoserver/wfs',{
         type: 'GET',
             data: {
             service: 'WFS',
             version: '1.1.1',
             request: 'GetFeature',
-            typename: 'kpa:20231203_LPRA_0107_point',
+            typename: 'lpra:20231203_LPRA_0107_point',
             CQL_FILTER: "tipologi = '"+kebun.toUpperCase()+"' AND status= 'NON-HUTAN'" ,
             srsname: 'EPSG:4326',
             outputFormat: 'text/javascript',
@@ -561,13 +535,13 @@ function submitLayer(){
         if(kebun == 'kosong'){
             Livewire.emit('test', kebun, status)
 
-            $.ajax('https://aws.simontini.id/geoserver/wfs',{
+            $.ajax('https://geoserver.kpa.or.id/geoserver/wfs',{
             type: 'GET',
                 data: {
                 service: 'WFS',
                 version: '1.1.1',
                 request: 'GetFeature',
-                typename: 'kpa:20231203_LPRA_0107_point',
+                typename: 'lpra:20231203_LPRA_0107_point',
                 CQL_FILTER: "status= 'NON-HUTAN'" ,
                 srsname: 'EPSG:4326',
                 outputFormat: 'text/javascript',
@@ -593,13 +567,13 @@ function resetLayer(){
         Livewire.emit('test', null, (data == 'all') ? "kosong" : data)
         pruneCluster.RemoveMarkers(markershutan);
         pruneCluster.RemoveMarkers(markersnonhutan);
-        $.ajax('https://aws.simontini.id/geoserver/wfs',{
+        $.ajax('https://geoserver.kpa.or.id/geoserver/wfs',{
         type: 'GET',
             data: {
             service: 'WFS',
             version: '1.1.1',
             request: 'GetFeature',
-            typename: 'kpa:20231203_LPRA_0107_point',
+            typename: 'lpra:20231203_LPRA_0107_point',
             srsname: 'EPSG:4326',
             CQL_FILTER: (data == 'Kawasan Hutan') ? "status= 'HUTAN'" : (data == 'Kebun / APL Lainnya') ? "status= 'NON-HUTAN'" : "status like '%%'",
             outputFormat: 'text/javascript',
@@ -609,128 +583,4 @@ function resetLayer(){
             jsonp:'format_options'
         });
 }
-
-
-
-//    // control that shows state info on hover
-//    const info = L.control();
-
-//    info.onAdd = function (map) {
-//        this._div = L.DomUtil.create('div', 'info');
-//        this.update();
-//        return this._div;
-//    };
-
-//    info.update = function (props) {
-//        const contents = props ? `<b>${props.provinsi}</b><br />${ data[props.provinsi.toUpperCase()]  } Kasus <sup>2</sup>` : 'Arahkan kursor ke salah satu provinsi';
-//        this._div.innerHTML = `<h4>LPRA</h4>${contents}`;
-//    };
-
-//    info.addTo(map);
-
-
-//    // get color depending on population density value
-//    function getColor(d) {
-//        return d > 20  ? '#BD0026' :
-//            d > 10  ? '#BD0026' :
-//            d > 7  ? '#E31A1C' :
-//            d > 5   ? '#FD5E2A' :
-//            d > 3   ? '#FEC24C' :
-//            d > 1   ? '#FED976' :
-//            d == 0 ?  '#FFFFFF' :
-//            d == null ?  '#FFFFFF' :
-//            '#ffeda0';
-
-//    }
-
-//    function style(feature) {
-//        return {
-//            weight: 0.8,
-//            opacity: 1,
-//            color: 'black',
-//            dashArray: '1',
-//            fillOpacity: 0.8,
-//            fillColor: getColor(data[feature.properties.ProvID.toUpperCase()])
-//        };
-//    }
-
-//    function customTip() {
-//        this.unbindTooltip();
-//        if(!this.isPopupOpen()) this.bindTooltip('Short description').openTooltip();
-//    }
-
-//    function customPop() {
-//        this.unbindTooltip();
-//    }
-
-
-
-//    function highlightFeature(e) {
-//        const layer = e.target;
-//        // console.log(e.target.feature.properties)
-//        layer.setStyle({
-//            weight: 1,
-//            color: 'white',
-//            dashArray: '',
-//            fillOpacity: 0.7
-//        });
-
-//        layer.bringToFront();
-//        this.unbindTooltip();
-//        if(data[e.target.feature.properties.ProvID.toUpperCase()]){
-//            if(!this.isPopupOpen()) this.bindTooltip(`<b>${e.target.feature.properties.ProvID}</b><br />${ data[e.target.feature.properties.ProvID.toUpperCase()]  } LPRA`).openTooltip();
-//        }else{
-//            if(!this.isPopupOpen()) this.bindTooltip(`<b>${e.target.feature.properties.ProvID}</b>`).openTooltip();
-//        }
-
-//    }
-
-//    /* global statesData */
-//    const geojson = L.geoJson(statesData, {
-//        style,
-//        onEachFeature
-//    }).addTo(map);
-
-//    function resetHighlight(e) {
-//        geojson.resetStyle(e.target);
-//        info.update();
-//    }
-
-//    function zoomToFeature(e) {
-//        console.log(e.target.feature.properties)
-//        map.fitBounds(e.target.getBounds());
-//    }
-
-//    function onEachFeature(feature, layer) {
-//        layer.on({
-//            mouseover: highlightFeature,
-//            mouseout: resetHighlight,
-//            click: zoomToFeature
-//        });
-//    }
-
-//    // map.attributionControl.addAttribution('Population data &copy; <a href="http://census.gov/">US Census Bureau</a>');
-
-
-//    const legend = L.control({position: 'bottomright'});
-
-//    legend.onAdd = function (map) {
-
-//        const div = L.DomUtil.create('div', 'info legend');
-//        const grades = [0, 1, 3, 5, 7, 10, 20];
-//        const labels = [];
-//        let from, to;
-
-//        for (let i = 0; i < grades.length; i++) {
-//            from = grades[i];
-//            to = grades[i + 1];
-
-//            labels.push(`<i style="background:${getColor(from + 0)}"></i> ${from}${to ? `&ndash;${to}` : '+'}`);
-//        }
-
-//        div.innerHTML = labels.join('<br>');
-//        return div;
-//    };
-
-//    legend.addTo(map);
 
