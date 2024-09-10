@@ -59,10 +59,9 @@
                         }
                     },
             }
-            var options1 = {
+            var options2 = {
                 series: totaltipologi.totaltipologi,
                 chart: {
-                id: 'totaltipologi',
                 width: '100%',
                 type: 'pie',
                 },
@@ -140,7 +139,7 @@
             })
 
             var chart = new ApexCharts(document.querySelector("#total"), options);
-            var chart1 = new ApexCharts(document.querySelector("#tipologi"), options1);
+            var chart1 = new ApexCharts(document.querySelector("#tipologi"), options2);
             chart.render();
             chart1.render();
         // })
