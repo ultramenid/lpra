@@ -480,7 +480,7 @@ function submitLayer(){
             service: 'WFS',
             version: '1.1.1',
             request: 'GetFeature',
-            typename: 'kpa:20231203_LPRA_0107_point',
+            typename: 'lpra:20231203_LPRA_0107_point',
             CQL_FILTER: "tipologi = '"+hutan.toUpperCase()+"' AND status= 'HUTAN'" ,
             srsname: 'EPSG:4326',
             outputFormat: 'text/javascript',
